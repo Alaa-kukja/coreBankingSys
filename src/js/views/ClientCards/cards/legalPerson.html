@@ -1,0 +1,406 @@
+<oj-bind-if test="[[searchMode()]]">
+  <oj-form-layout id="formLayoutOptions"
+    class="oj-formlayout-full-width"
+    style="margin-top: -4vh;"
+    columns="3"
+    direction="row"
+    user-assistance-density="compact">
+    <oj-input-number :id="[[itsSrInternalID]]"
+      value="{{internalNoValue}}"
+      label-hint="[[internalLabel]]"></oj-input-number>
+    <oj-input-text :id="[[itsSrNameID]]"
+      value="{{srNameValue}}"
+      label-hint="[[nameLabel]]"></oj-input-text>
+    <oj-select-single :id="[[itsSrIdTypeID]]"
+      value="{{srTypeValue}}"
+      item-text="descr"
+      data="[[typeDataProvider]]"
+      label-hint="[[typeLabel]]">
+    </oj-select-single>
+  </oj-form-layout>
+  <div class="oj-flex">
+    <div class="oj-flex-item"
+      style="min-width: 80%;">
+      <div style="margin-top: 6vh;">
+        <oj-table id="table"
+          id="table"
+          aria-label="companies Table"
+          accessibility.row-header="cmNameID"
+          selection-mode.row="single"
+          class="tab-table-container"
+          data="[[companiesDataProvider]]"
+          on-selected-changed="[[selectedChangedListener]]"
+          columns-default.sortable="disabled"
+          layout="fixed"
+          columns="[[columns]]">
+          <template slot="clientNoTemplate"
+            data-oj-as="cell">
+            <oj-bind-text value="[[numberConverter.format(cell.data)]]"></oj-bind-text>
+          </template>
+
+          <template slot="nameTemplate"
+            data-oj-as="cell">
+            <oj-bind-text value="[[cell.data]]"></oj-bind-text>
+          </template>
+        </oj-table>
+      </div>
+    </div>
+    <div class="oj-sm-flex-initial oj-flex-item  oj-sm-padding-1x-end">
+      <oj-button style="min-width: 12.5vh;"
+        label="[[newButtonLabel]]"
+        on-oj-action="[[handleSearch]]"> <span slot="startIcon"
+          class="oj-ux-ico-new-application"></span>
+        <span>
+      </oj-button>
+    </div>
+  </div>
+
+</oj-bind-if>
+<oj-bind-if test="[[!searchMode()]]">
+  <oj-validation-group valid="[[validationGroupValid]]"
+    on-valid-changed="[[ojValidChanged]]">
+    <oj-form-layout id="formLayoutOptions"
+      class="oj-formlayout-full-width"
+      style="margin-top: -4vh;"
+      columns="3"
+      direction="row"
+      user-assistance-density="compact">
+      <oj-input-text :id="[[itsNameID]]"
+        value="{{nameValue}}"
+        label-hint="[[nameLabel]]"
+        validators="[[cNameValidators]]"
+        required></oj-input-text>
+      <oj-select-single :id="[[itsIdTypeID]]"
+        value="{{typeValue}}"
+        item-text="descr"
+        data="[[typeDataProvider]]"
+        label-hint="[[typeLabel]]"
+        required>
+      </oj-select-single>
+      <oj-input-date :id="[[itsEstablishingID]]"
+        value="{{establishingDateValue}}"
+        validators="[[dateValidator]]"
+        label-hint="[[establishingDateLabe]]"></oj-input-date>
+    </oj-form-layout>
+    <div class="oj-flex">
+      <div class="oj-sm-flex-initial oj-flex-item  oj-sm-padding-1x-end oj-sm-width-1/4">
+        <oj-form-layout class="oj-formlayout-full-width"
+          style="max-width: 40vh;"
+          direction="column"
+          user-assistance-density="compact">
+
+          <oj-input-text :id="[[itsPurposeID]]"
+            value="{{purposeValue}}"
+            label-hint="[[purposeLabel]]"
+            validators="[[cNameValidators]]"></oj-input-text>
+
+
+
+
+          <oj-select-single :id="[[itsNationalityID]]"
+            value="{{nationalityValue}}"
+            item-text="name"
+            data="[[nationalityDataProvider]]"
+            label-hint="[[nationalityLabel]]">
+          </oj-select-single>
+          <oj-input-text :id="[[itsPOBoxID]]"
+            value="{{poBoxValue}}"
+            label-hint="[[poBoxLabe]]"></oj-input-text>
+
+          <oj-input-text :id="[[itsCityID]]"
+            value="{{cityValue}}"
+            label-hint="[[cityLabel]]"></oj-input-text>
+          <oj-input-text :id="[[itsStreetID]]"
+            value="{{streetValue}}"
+            label-hint="[[streetLabel]]">
+          </oj-input-text>
+
+          <oj-input-text :id="[[emailId]]"
+            label-hint="[[emailLabe]]"
+            placeholder="john_doe@example.com"
+            value="{{emailValue}}"
+            messages-custom="{{emailAddressMessages}}"
+            disabled="[[contactPref() !== 'email']]"></oj-input-text>
+        </oj-form-layout>
+      </div>
+      <div class="oj-flex-item oj-sm-width-3/4">
+        <oj-form-layout id="itsForm2"
+          class="oj-formlayout-full-width oj-sm-padding-1x-start oj-sm-padding-1x-end"
+          columns="3"
+          direction="row"
+          user-assistance-density="compact">
+
+          <oj-select-single :id="[[itsIdCardID1]]"
+            class="app-text-field-info"
+            value="{{idCardValue1}}"
+            item-text="shortDescr"
+            data="[[idCardDataProvider]]"
+            label-hint="[[idCardLabel1]]">
+          </oj-select-single>
+
+
+          <oj-input-number :id="[[itsIdNumberID1]]"
+            class="app-text-field-info"
+            value="{{idNumberValue1}}"
+            label-hint="[[idNumberLabel1]]"></oj-input-number>
+
+          <oj-input-date :id="[[itsGrantDate1]]"
+            class="app-text-field-info"
+            value="{{grantDateValue1}}"
+            validators="[[dateValidator]]"
+            label-hint="[[grantDateLabe1]]"></oj-input-date>
+
+          <oj-select-single :id="[[itsIdCardID2]]"
+            class="app-text-field-info"
+            item-text="shortDescr"
+            value="{{idCardValue2}}"
+            data="[[idCardDataProvider]]"
+            label-hint="[[idCardLabel2]]">
+          </oj-select-single>
+
+
+          <oj-input-number :id="[[itsIdNumberID2]]"
+            class="app-text-field-info"
+            value="{{idNumberValue2}}"
+            label-hint="[[idNumberLabel2]]"></oj-input-number>
+
+
+
+          <oj-input-date :id="[[itsGrantDate2]]"
+            class="app-text-field-info"
+            value="{{grantDateValue2}}"
+            validators="[[dateValidator]]"
+            label-hint="[[grantDateLabe2]]"></oj-input-date>
+        </oj-form-layout>
+
+        <div class="oj-flex">
+          <div class="oj-flex-item">
+            <oj-form-layout class="oj-formlayout-full-width oj-sm-padding-1x-start oj-sm-padding-1x-end"
+              columns="2"
+              direction="row"
+              user-assistance-density="compact">
+              <oj-input-text :id="[[itsRegPlaceID]]"
+                value="{{regPlaceValue}}"
+                label-hint="[[regPlaceLabel]]"></oj-input-text>
+              <oj-input-text :id="[[itsPhonID]]"
+                value="{{phonValue}}"
+                validators="[[phoneValidator]]"
+                label-hint="[[phonLabel]]"></oj-input-text>
+              <oj-input-text :id="[[itsMobileID]]"
+                value="{{mobileValue}}"
+                validators="[[mobileValidator]]"
+                label-hint="[[mobileLabel]]"></oj-input-text>
+              <oj-input-text :id="[[itsFaxID]]"
+                value="{{faxValue}}"
+                validators="[[phoneValidator]]"
+                label-hint="[[faxLabel]]"></oj-input-text>
+            </oj-form-layout>
+            <div class="oj-sm-padding-1x-end oj-sm-padding-1x-start">
+              <oj-input-text :id="[[itsAddressID]]"
+                value="{{addressValue}}"
+                label-hint="[[addressLabel]]"
+                user-assistance-density="compact"
+                required></oj-input-text>
+            </div>
+            <oj-form-layout
+              class="oj-formlayout-full-width oj-sm-padding-2x-top oj-sm-padding-1x-start oj-sm-padding-1x-end"
+              columns="2"
+              direction="row"
+              user-assistance-density="compact">
+
+              <oj-input-text :id="[[itsZoneID]]"
+                value="{{zoneValue}}"
+                label-hint="[[zoneLabel]]"></oj-input-text>
+              <oj-input-text :id="[[itsBuildingID]]"
+                value="{{buildingValue}}"
+                label-hint="[[buildingLabe]]"></oj-input-text>
+            </oj-form-layout>
+          </div>
+          <div class="oj-sm-flex-initial oj-flex-item  oj-sm-padding-4x-start oj-lg-padding-10x-top">
+            <oj-form-layout class="oj-form-layout-column-min-width"
+              style="max-width: 18vh;"
+              direction="column"
+              user-assistance-density="compact">
+              <oj-checkboxset id="economicEfficiencyChk"
+                value="{{economicEfficiencyValue}}"
+                style="margin-top: -1vh;">
+                <oj-option value="economicEfficiency">
+                  <oj-bind-text value=[[economicEfficiencyLabel]]></oj-bind-text>
+                </oj-option>
+              </oj-checkboxset>
+              <oj-c-button style="min-width: 15.5vh;"
+                label="[[searchLabel]]"
+                on-oj-action="[[handleSearch]]">
+                <span slot="startIcon"
+                  class="oj-ux-ico-search"></span>
+              </oj-c-button>
+            </oj-form-layout>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <oj-bind-if test="[[economicEfficiencyValue() == 'economicEfficiency']]">
+      <div class='oj-flex'>
+
+        <div class="oj-flex-item  oj-sm-width-2/5">
+          <oj-form-layout class="oj-formlayout-full-width"
+            direction="column"
+            user-assistance-density="compact">
+
+            <div class="oj-flex">
+              <div class="oj-sm-flex-initial oj-flex-item oj-sm-padding-1x-start oj-sm-padding-1x-end oj-sm-width-1/4">
+                <oj-input-text :id="[[itsIdISIC4]]"
+                  class="app-text-field-info"
+                  value="[[iSIC4Value]]"
+                  label-hint="ISIC4">
+                </oj-input-text>
+              </div>
+              <div class="oj-flex-item oj-sm-width-3/4">
+                <div class="oj-flex">
+                  <div class="oj-sm-flex-initial oj-flex-item oj-sm-padding-1x-end oj-sm-width-4/5">
+                    <oj-input-text :id="[[itsIdISIC2]]"
+                      class="app-text-field-info"
+                      value="[[iSIC2Value]]"
+                      label-hint="ISIC2"
+                      disabled>
+                    </oj-input-text>
+                  </div>
+                  <div class="oj-flex-item oj-sm-width-1/5 oj-sm-padding-2x-start">
+                    <oj-button class="oj-button-sm"
+                      style="margin-top: 1vh;"
+                      chroming="callToAction"
+                      display="all"
+                      on-oj-action="[[handleChoseISIC2]]"> <span slot="startIcon"
+                        class="oj-ux-ico-add-sibling"></span>
+                      <span></oj-button>
+                  </div>
+                </div>
+                <!-- </oj-form-layout> -->
+              </div>
+
+            </div>
+
+
+            <oj-input-number :id="[[itsShareCapital]]"
+              value="{{shareCapitalValue}}"
+              label-hint="[[shareCapitalLabel]]"></oj-input-number>
+          </oj-form-layout>
+        </div>
+        <div class="oj-flex-item oj-sm-width-3/5">
+          <oj-form-layout class="oj-formlayout-full-width oj-sm-padding-1x-start oj-sm-padding-1x-end"
+            columns="3"
+            direction="row"
+            user-assistance-density="compact">
+            <oj-select-single :id="[[itsIdSector]]"
+              class="app-text-field-info"
+              item-text="descr"
+              value="{{sectorValue}}"
+              data="[[sectorDataProvider]]"
+              label-hint="[[sectorLabel]]">
+            </oj-select-single>
+            <oj-select-single :id="[[itsIdSubSector]]"
+              class="app-text-field-info"
+              item-text="descr"
+              value="{{subSectorValue}}"
+              data="[[subSectorDataProvider]]"
+              label-hint="[[subSectorLabel]]">
+            </oj-select-single>
+            <oj-select-single :id="[[itsActivity]]"
+              class="app-text-field-info"
+              item-text="descr"
+              value="{{activityValue}}"
+              data="[[activityDataProvider]]"
+              label-hint="[[economistActivityLabel]]">
+            </oj-select-single>
+          </oj-form-layout>
+          <div class="oj-flex oj-lg-align-items-center oj-lg-flex-items-initial oj-lg-justify-content-center">
+            <h6><oj-bind-text value="[[foundingMembersLabel]]"></oj-bind-text></h6>
+          </div>
+        </div>
+      </div>
+      <oj-form-layout class="oj-form-layout-column-max-width"
+        columns="5"
+        direction="row"
+        user-assistance-density="compact">
+        <oj-input-text class="app-text-field-info"
+          value="{{member1}}"
+          label-hint="1"></oj-input-text>
+        <oj-input-text class="app-text-field-info"
+          value="{{member2}}"
+          label-hint="2"></oj-input-text>
+        <oj-input-text class="app-text-field-info"
+          value="{{member3}}"
+          label-hint="3"></oj-input-text>
+        <oj-input-text class="app-text-field-info"
+          value="{{member4}}"
+          label-hint="4"></oj-input-text>
+        <oj-input-text class="app-text-field-info"
+          value="{{member5}}"
+          label-hint="5"></oj-input-text>
+        <oj-input-text class="app-text-field-info"
+          value="{{member6}}"
+          label-hint="6"></oj-input-text>
+        <oj-input-text class="app-text-field-info"
+          value="{{member7}}"
+          label-hint="7"></oj-input-text>
+        <oj-input-text class="app-text-field-info"
+          value="{{member8}}"
+          label-hint="8"></oj-input-text>
+        <oj-input-text class="app-text-field-info"
+          value="{{member9}}"
+          label-hint="9"></oj-input-text>
+        <oj-input-text class="app-text-field-info"
+          value="{{member10}}"
+          label-hint="10"></oj-input-text>
+      </oj-form-layout>
+    </oj-bind-if>
+
+    <oj-dialog :id="[[itsChoseOccupationDialog]]"
+      style="width: 64.5%;"
+      dialog-title="[[choseOccupationLabel]]">
+      <div slot="body">
+        <occ-tree on-selected-changed="[[occTreeSelectedChanged]]"></occ-tree>
+      </div>
+      <div slot="footer">
+        <div class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center 
+          oj-sm-flex-items-initial oj-sm-justify-content-flex-end">
+          <oj-button class="oj-button-sm oj-sm-padding-2x-horizontal"
+            chroming="danger"
+            display="icons"
+            label="[[cancelLabel]]"
+            on-oj-action="[[handleCancel]]"> <span slot="startIcon"
+              class="oj-ux-ico-multiply"></span>
+            <span></oj-button>
+          <oj-button class="oj-button-sm"
+            chroming="callToAction"
+            display="icons"
+            label="[[applyLabel]]"
+            disabled="[[isDisabled()]]"
+            on-oj-action="[[handleApply]]"> <span slot="startIcon"
+              class="oj-ux-ico-check"></span>
+            <span></oj-button>
+        </div>
+      </div>
+    </oj-dialog>
+
+  </oj-validation-group>
+
+</oj-bind-if>
+
+<oj-c-message-banner data="[[messageBannerData]]"
+  detail-template-value="detailList"
+  type="section"
+  on-oj-close="[[handleCloseMessageBanner]]">
+  <template slot="detailList"
+    data-oj-as="context">
+    <ul>
+      <oj-bind-for-each data="[[context.data.detailList]]">
+        <template>
+          <li><oj-bind-text value="[[$current.data]]"></oj-bind-text></li>
+        </template>
+      </oj-bind-for-each>
+    </ul>
+  </template>
+</oj-c-message-banner>

@@ -1,0 +1,239 @@
+<div id="tableWrapper">
+  <oj-table id="table"
+    class="app-table-form-container"
+    accessibility.row-header="depName"
+    selection-mode.row="single"
+    aria-label="Departments Table"
+    dnd='{"reorder": {"columns": "enabled"}}'
+    data="[[dataProvider]]"
+    add-row-display="{{displayRow}}"
+    edit-mode="rowEdit"
+    edit-row="{{editRow}}"
+    on-oj-before-row-edit="[[beforeRowEditListener]]"
+    on-oj-before-row-edit-end="[[beforeRowEditEndListener]]"
+    on-oj-before-row-add-end="[[beforeRowAddEndListener]]"
+    on-selected-changed="[[selectedChangedListener]]"
+    row.editable="[[rowEditable]]"
+    columns="[[columns]]">
+    <template slot="addRowTemplate"
+      data-oj-as="addRow">
+      <td colspan="7"
+        class="oj-form-control-default oj-sm-padding-2x oj-table-data-cell-padding">
+        <oj-validation-group id="trackerAdd">
+          <oj-form-layout id="ofl1"
+            max-columns="5"
+            direction="row">
+            <oj-input-number id="itDeptID"
+              value="{{addRowData().departmentid}}"
+              label-hint="[[departmentIdLabel]]"
+              converter="[[numberConverter]]"
+              required
+              class="addRowEditable"></oj-input-number>
+            <oj-input-text id="it1"
+              label-hint="[[departmentNameLabel]]"
+              value="{{addRowData().departmentname}}"
+              class="addRowEditable"></oj-input-text>
+            <oj-input-text id="it2"
+              value="{{addRowData().locationid}}"
+              label-hint="[[locationIdLabel]]"
+              converter="[[numberConverter]]"
+              class="addRowEditable"></oj-input-text>
+            <oj-select-single id="ss1"
+              label-hint="[[typeLabel]]"
+              value="{{addRowData().type}}"
+              data="[[departments]]"
+              class="addRowEditable"></oj-select-single>
+            <oj-select-single id="it3"
+              label-hint="[[managerIdLabel]]"
+              value="{{addRowData().managerid}}"
+              data="[[managersDataProvider]]"
+              class="addRowEditable"></oj-select-single>
+            <!-- <oj-input-text id="it3"
+                value="{{addRowData().managerid}}"
+                label-hint="[[managerIdLabel]]"
+                converter="[[numberConverter]]"
+                class="editable"></oj-input-text> -->
+            <oj-combobox-one id="cb1"
+              value="{{addRowData().currency}}"
+              label-hint="[[currencyLabel]]"
+              class="addRowEditable">
+              <oj-option value="USD">USD</oj-option>
+              <oj-option value="JPY">JPY</oj-option>
+              <oj-option value="EUR">EUR</oj-option>
+            </oj-combobox-one>
+            <oj-input-date id="dt1"
+              value="{{addRowData().startdate}}"
+              label-hint="[[startDateLabel]]"
+              class="addRowEditable"></oj-input-date>
+            <oj-input-number label-hint="[[employeesCountLabel]]"
+              value="{{addRowData().employeecount}}"
+              step="0"></oj-input-number>
+            <oj-input-number label-hint="[[ratingLabel]]"
+              value="{{addRowData().rating}}"
+              min="1"
+              max="5"
+              step="0"></oj-input-number>
+          </oj-form-layout>
+        </oj-validation-group>
+        <div class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center 
+                      oj-sm-flex-items-initial oj-sm-justify-content-flex-end">
+          <oj-button id="cancel"
+            class="oj-button-sm oj-sm-padding-2x-horizontal"
+            chroming="danger"
+            on-oj-action="[[handleAddCancel]]"
+            data-oj-clickthrough="disabled">
+            <span><oj-bind-text value="[[cancelLabel]]"></oj-bind-text></span>
+          </oj-button>
+          <oj-button id="update"
+            class="oj-button-sm"
+            chroming="callToAction"
+            on-oj-action="[[handleAddSubmit]]"
+            data-oj-clickthrough="disabled">
+            <span><oj-bind-text value="[[applyLabel]]"></oj-bind-text></span>
+          </oj-button>
+        </div>
+      </td>
+
+    </template>
+
+    <template slot="rowTemplate"
+      data-oj-as="row">
+      <oj-bind-if test="[[row.mode === 'navigation']]">
+        <td>
+          <oj-bind-text value="[[numberConverter.format(row.item.data.departmentid)]]"></oj-bind-text>
+        </td>
+        <td>
+          <oj-bind-text value="[[row.item.data.departmentname]]"></oj-bind-text>
+        </td>
+        <td>
+          <oj-bind-text value="[[managerName(row.item.data.managerid)]]"></oj-bind-text>
+        </td>
+        <td>
+          <oj-bind-text value="[[numberConverter.format(row.item.data.locationid)]]"></oj-bind-text>
+        </td>
+        <td>
+          <oj-bind-text value="[[row.item.data.type]]"></oj-bind-text>
+        </td>
+        <td>
+          <oj-bind-text value="[[dateConverter.format(row.item.data.startdate)]]"></oj-bind-text>
+        </td>
+        <td class="oj-sm-padding-0-vertical">
+          <oj-button display="icons"
+            class="oj-button-sm"
+            chroming="borderless"
+            on-oj-action="[[handleUpdate]]"
+            disabled="[[row.editable === 'off']]"
+            data-oj-clickthrough="disabled">
+            <span slot="startIcon"
+              class="oj-ux-ico-edit"></span>
+            Edit
+          </oj-button>
+        </td>
+      </oj-bind-if>
+      <oj-bind-if test="[[row.mode === 'edit']]">
+        <td colspan="7"
+          class="oj-form-control-default oj-sm-padding-2x oj-table-data-cell-padding">
+          <oj-validation-group id="trackerEdit">
+            <oj-form-layout id="ofl1"
+              max-columns="5"
+              direction="row">
+              <oj-input-number id="itDeptID"
+                readonly
+                value="{{rowData.departmentid}}"
+                label-hint="[[departmentIdLabel]]"
+                converter="[[numberConverter]]"
+                class="editable"></oj-input-number>
+              <oj-input-text id="it1"
+                label-hint="[[departmentNameLabel]]"
+                value="{{rowData.departmentname}}"
+                class="editable"></oj-input-text>
+              <oj-input-text id="it2"
+                value="{{rowData.locationid}}"
+                label-hint="[[locationIdLabel]]"
+                converter="[[numberConverter]]"
+                class="editable"></oj-input-text>
+              <oj-select-single id="ss1"
+                label-hint="[[typeLabel]]"
+                value="{{rowData.type}}"
+                data="[[departments]]"
+                class="editable"></oj-select-single>
+              <oj-select-single id="it3"
+                label-hint="[[managerIdLabel]]"
+                value="{{rowData.managerid}}"
+                data="[[managersDataProvider]]"
+                class="editable"></oj-select-single>
+              <!-- <oj-input-text id="it3"
+                  value="{{rowData.managerid}}"
+                  label-hint="[[managerIdLabel]]"
+                  converter="[[numberConverter]]"
+                  class="editable"></oj-input-text> -->
+              <oj-combobox-one id="cb1"
+                value="{{rowData.currency}}"
+                label-hint="[[currencyLabel]]"
+                class="editable">
+                <oj-option value="USD">USD</oj-option>
+                <oj-option value="JPY">JPY</oj-option>
+                <oj-option value="EUR">EUR</oj-option>
+              </oj-combobox-one>
+              <oj-input-date id="dt1"
+                value="{{rowData.startdate}}"
+                label-hint="[[startDateLabel]]"
+                class="editable"></oj-input-date>
+              <oj-input-number label-hint="[[employeesCountLabel]]"
+                value="{{rowData.employeecount}}"
+                step="0"></oj-input-number>
+              <oj-input-number label-hint="[[ratingLabel]]"
+                value="{{rowData.rating}}"
+                min="1"
+                max="5"
+                step="0"></oj-input-number>
+            </oj-form-layout>
+          </oj-validation-group>
+          <div class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center 
+                oj-sm-flex-items-initial oj-sm-justify-content-flex-end">
+            <oj-button id="cancel"
+              class="oj-button-sm oj-sm-padding-2x-horizontal"
+              chroming="danger"
+              on-oj-action="[[handleCancel]]"
+              data-oj-clickthrough="disabled">
+              <span><oj-bind-text value="[[cancelLabel]]"></oj-bind-text></span>
+            </oj-button>
+            <oj-button id="update"
+              class="oj-button-sm"
+              chroming="callToAction"
+              on-oj-action="[[handleDone]]"
+              data-oj-clickthrough="disabled">
+              <span><oj-bind-text value="[[applyLabel]]"></oj-bind-text></span>
+            </oj-button>
+          </div>
+        </td>
+      </oj-bind-if>
+    </template>
+
+  </oj-table>
+  <br />
+  <br />
+  <div class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center 
+      oj-sm-flex-items-initial oj-sm-justify-content-flex-end oj-sm-padding-4x-end">
+    <oj-button id="deleteRow"
+      class="oj-button-sm oj-sm-padding-2x-horizontal"
+      chroming="danger"
+      display="icons"
+      label="[[deleteRowLabel]]"
+      on-oj-action="[[handleDeleteRow]]"
+      disabled="[[isDisabled]]"> <span slot="startIcon"
+        class="oj-ux-ico-delete-all"></span>
+      <span></oj-button>
+    <oj-button id="addRowDisplay"
+      class="oj-button-sm"
+      chroming="callToAction"
+      display="icons"
+      label="[[addRowLabel]]"
+      on-oj-action="[[handleAddRow]]"
+      disabled="[[isNavigationMode]]"> <span slot="startIcon"
+        class="oj-ux-ico-playlist-add-check"></span>
+      <span></oj-button>
+
+
+  </div>
+</div>

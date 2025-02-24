@@ -1,0 +1,45 @@
+<!--
+ Copyright (c) 2014, 2023, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-padding">
+  <div
+    class="oj-page-center oj-md-5  oj-sm-padding-8x-start  oj-sm-padding-12x-top oj-panel oj-panel-shadow-md oj-bg-neutral-10"
+    style=" border-radius: 22px;">
+
+    <oj-form-layout direction="column">
+      <oj-validation-group id="trackerInputs">
+        <oj-input-password value="{{oldPassword}}"
+          class="login-field"
+          label-hint="[[oldPasswordLabel]]"
+          mask-icon="visible">
+        </oj-input-password>
+
+        <oj-input-password value="{{newPassword}}"
+          class="login-field"
+          label-hint="[[newPasswordLabel]]"
+          mask-icon="visible">
+        </oj-input-password>
+
+        <oj-input-password value="{{confirm}}"
+          class="login-field"
+          label-hint="[[confirmLabel]]"
+          mask-icon="visible">
+        </oj-input-password>
+      </oj-validation-group>
+      <div class="oj-divider-top  oj-flex   oj-sm-justify-content-flex-end oj-sm-padding-4x">
+        <oj-button class="oj-login-button"
+          chroming="solid">
+          <span>
+            <oj-bind-text value="[[changPasswordLabel]]">
+
+            </oj-bind-text>
+          </span>
+          <span slot="startIcon"
+            class="oj-ux-ico-text-input-password"></span>
+        </oj-button>
+      </div>
+    </oj-form-layout>
+  </div>
+</div>

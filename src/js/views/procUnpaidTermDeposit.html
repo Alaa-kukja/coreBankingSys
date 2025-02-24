@@ -1,0 +1,117 @@
+<div class="oj-flex oj-md-justify-content-center container">
+    <div class="oj-md-6 oj-flex-item">
+        <oj-input-date id="forThisDate"
+            value="{{forThisDateVal}}"
+            label-hint="[[forThisDateLabel]]"></oj-input-date>
+    </div>
+</div>
+<!-- converter="[[forThisDateConverter]]" -->
+
+<!--  1 The First Table -->
+<div class="oj-flex oj-lg-justify-content-center oj-sm-padding-2x-top">
+    <oj-table id="tableForDepositNum"
+        aria-label="Deposits Number Table"
+        selected="{{selectedDepositNumItem}}"
+        selection-mode.row="single"
+        on-selected-changed="[[selectedChangedListener]]"
+        class="oj-md-margin-2x-horizontal oj-md-12 demoTable"
+        data="[[depositNumTabDataProvider]]"
+        columns="{{depositNumTableColumns}}"></oj-table>
+
+    <script type="text/html"
+        id="sppNewAmount">
+<td>
+<oj-bind-text value="[[$context.row.sppNewAmount]]"></oj-bind-text>
+</td>
+</script>
+
+    <script type="text/html"
+        id="benefit">
+<td>
+    <oj-bind-if test="[[$context.row.sppIntAmount != null]]">
+    <oj-bind-text value="[[$context.row.sppIntAmount + $context.row.sppNewAmount]]"></oj-bind-text>
+</oj-bind-if>
+<oj-bind-if test="[[$context.row.sppIntAmount == null]]">
+    <oj-bind-text value="[[$context.row.sppNewAmount]]"></oj-bind-text>
+</oj-bind-if>
+</td>
+</script>
+</div>
+
+<term-deposit current-router="[[router._activeState.path]]"
+    term-sector="{{termSectorVal}}"
+    term-year="{{termYearVal}}"
+    term-month="{{termMonthVal}}"
+    term-first-amount="{{termFirstAmountVal}}"
+    term-deposit-amount="{{termDepositAmountVal}}"
+    term-write-amount="{{termWriteAmountVal}}"
+    term-benefit-symbol="{{termBenefitSymbolVal}}"
+    term-benefit-rate="{{creditIntValue}}"
+    term-benefit-descr="{{termBenefitDescrVal}}"
+    term-benefit-amount="{{termBenefitAmountVal}}"
+    term-interest-acc-num="{{termInterestAccNumVal}}"
+    term-interest-acc-name="{{termInterestAccNameVal}}"
+    term-first-deposit-date="{{termFirstDepositDateVal}}"
+    term-deposit-date="{{termDepositDateVal}}"
+    term-deserve-date="{{termDeserveDateVal}}"
+    term-deserved-date="{{termDeservedDateVal}}"
+    term-deposit-acc-num="{{termDepositAccNumVal}}"
+    term-deposit-acc-name="{{termDepositAccNameVal}}"
+    term-cli-acc-num="{{termCliAccNumVal}}"
+    term-cli-acc-name="{{termCliAccNameVal}}"></term-deposit>
+
+
+<!-- 8 The Table In The Under -->
+<div class="oj-flex oj-lg-justify-content-center oj-sm-padding-2x-top">
+    <oj-table id="tableForDepositClient"
+        aria-label="Deposit Clients Table"
+        accessibility.row-header="name"
+        class="oj-md-margin-2x-horizontal oj-md-12 demoTable"
+        data="[[DepositClientTabDataProvider]]"
+        columns="{{depositClientTableColumns}}"></oj-table>
+
+    <script type="text/html"
+        id="cli_name">
+<td>
+    <oj-bind-text value="[[$context.row.firstName + ' ' + $context.row.fatherName + ' ' + $context.row.lastName]]"></oj-bind-text>
+</td>
+</script>
+</div>
+
+<!-- The Buttons Under Screen -->
+<div
+    class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center oj-sm-justify-content-flex-end oj-md-margin-2x-vertical">
+
+    <!-- back button -->
+    <oj-c-button class="oj-md-padding-2x-horizontal"
+        style="min-width: 20vh;"
+        chroming="danger"
+        label="[[backButton]]"
+        display="all"
+        on-oj-action="[[handleScreenBack]]">
+        <span slot="startIcon"
+            class="oj-ux-ico-back-parent"></span>
+    </oj-c-button>
+
+    <!-- ok button -->
+    <oj-c-button class="oj-button-sm"
+        style="min-width: 20vh;"
+        chroming="callToAction"
+        display="all"
+        label="[[acceptButton]]"
+        on-oj-action="[[handleScreenApply]]"> <span slot="startIcon"
+            class="oj-ux-ico-check"></span>
+    </oj-c-button>
+
+    <!-- cancel button -->
+    <oj-c-button class="oj-md-padding-2x-horizontal"
+        style="min-width: 20vh;"
+        chroming="danger"
+        label="[[cancelButton]]"
+        display="all"
+        on-oj-action="[[handleScreenClose]]">
+        <span slot="startIcon"
+            class="oj-ux-ico-multiply"></span>
+    </oj-c-button>
+
+</div>

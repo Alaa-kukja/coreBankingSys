@@ -1,0 +1,38 @@
+<div id="tableWrapper"
+  class="oj-hybrid-padding">
+  <oj-table id="table"
+    aria-label="branch Table"
+    accessibility.row-header="nameID"
+    selection-mode.row="single"
+    class="tab-table-container"
+    data="[[branchesDataProvider]]"
+    on-selected-changed="[[selectedChangedListener]]"
+    columns-default.sortable="disabled"
+    layout="fixed"
+    columns="[[columns]]">
+    <template slot="clientNoTemplate"
+      data-oj-as="cell">
+      <oj-bind-text value="[[numberConverter.format(cell.data)]]"></oj-bind-text>
+    </template>
+
+    <template slot="branchNoTemplate"
+      data-oj-as="cell">
+      <oj-bind-text value="[[numberConverter.format(cell.data)]]"></oj-bind-text>
+    </template>
+
+    <template slot="nameTemplate"
+      data-oj-as="cell">
+      <oj-bind-text value="[[cell.data]]"></oj-bind-text>
+    </template>
+
+    <template slot="typeTemplate"
+      data-oj-as="cell">
+      <oj-bind-text value="[[getTypeLabel(cell.data)]]"></oj-bind-text>
+    </template>
+
+    <template slot="cityTemplate"
+      data-oj-as="cell">
+      <oj-bind-text value="[[getCityLabel(cell.data)]]"></oj-bind-text>
+    </template>
+  </oj-table>
+</div>

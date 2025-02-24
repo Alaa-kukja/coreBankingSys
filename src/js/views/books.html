@@ -1,0 +1,36 @@
+<!--
+ Copyright (c) 2014, 2023, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-padding">
+  <section>
+
+    <div class="oj-flex">
+      <oj-bind-for-each data="[[booksDataProvider]]">
+        <template data-oj-as="item">
+          <div class="oj-sm-4 oj-lg-3 oj-flex-item oj-sm-padding-2x-horizontal oj-sm-padding-2x-top">
+            <custom-book book-id="[[item.data.id]]"
+              src="[[item.data.avatar]]"
+              book-title="[[item.data.title]]"
+              author="[[item.data.author]]"
+              type="[[item.data.type]]"
+              book-rating = "[[item.data.rating]]"></custom-book>
+          </div>
+        </template>
+        <template slot="noData">
+          <div >
+            <div  style = "position: absolute;top: 0;bottom: 0; left: 0;right: 0;margin: auto;height: 100px;width: 100px;"
+                 class="oj-flex-item">
+              <oj-progress-circle id="progressCircle"
+                value="-1">
+              </oj-progress-circle>
+            </div>
+          </div>
+        </template>
+
+      </oj-bind-for-each>
+    </div>
+
+  </section>
+</div>

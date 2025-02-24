@@ -1,0 +1,81 @@
+.oj-login-button {
+    cursor: pointer;
+    --oj-button-border-radius: 1.7rem;
+    width: 100%;
+    --oj-button-solid-chrome-bg-color: var(--oj-header-color);
+    --oj-button-solid-chrome-border-color: transparent;
+    --oj-button-solid-chrome-bg-color-hover: var(--oj-menu-color);
+    --oj-button-solid-chrome-text-color: var(--oj-header-text-color);
+    --oj-button-solid-chrome-text-color-active: rgb(152, 185, 189);
+    --oj-button-solid-chrome-text-color-hover: rgb(152, 185, 189);
+}
+
+.login-field {
+    --oj-text-field-border-radius: 1.5rem;
+    --oj-text-field-border-color: var(--oj-menu-color);
+    --oj-text-field-border-width: 0.5px;
+    --oj-text-field-inside-edge-height: 3rem;
+    /* --oj-typography-body-md-line-height: 1; */
+    --oj-button-icon-size: var(--oj-core-icon-size-sm);
+    --oj-text-field-text-color: var(--oj-header-color);
+}
+
+.user-name-field {
+    --oj-text-field-border-radius: 1.5rem;
+    --oj-text-field-border-width: 0.5px;
+    --oj-text-field-inside-edge-height: 3rem;
+    --oj-typography-body-md-line-height: 1;
+    --oj-button-icon-size: 1.25rem;
+    --oj-text-field-border-color: var(--oj-header-color);
+}
+
+.app-login-title {
+    width: 90%;
+    text-align: center;
+}
+
+@media screen and (max-width : 1920px) and (-webkit-device-pixel-ratio: 1.5) {
+    .login-field {
+        --oj-text-field-inside-edge-height: 2.66rem;
+    }
+
+    .user-name-field {
+        --oj-text-field-inside-edge-height: 2.66rem;
+    }
+
+    .user-name-field {
+        --oj-text-field-inside-edge-height: 2.8rem;
+    }
+
+    .app-login {
+        --oj-core-spacing-8x: 1rem;
+    }
+
+    .app-login-title {
+        font-size: x-large;
+
+    }
+}
+
+@media screen and (max-width : 1366px) {
+    .login-field {
+        --oj-text-field-inside-edge-height: 2.66rem;
+    }
+
+    .user-name-field {
+        --oj-text-field-inside-edge-height: 2.66rem;
+    }
+
+    .user-name-field {
+        --oj-text-field-inside-edge-height: 2.8rem;
+    }
+
+    .app-login {
+        --oj-core-spacing-8x: 1rem;
+    }
+
+    .app-login-title {
+        font-size: x-large;
+
+    }
+}

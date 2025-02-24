@@ -1,0 +1,235 @@
+<div class="oj-hybrid-padding">
+    <oj-bind-if test="[[parents().length == 0]]">
+        <div style="position: relative;top: 0;bottom: 0; left: 0;right: 0;margin: auto;height: 100px;width: 100px;margin-top: 20%;"
+            class="oj-flex-item">
+            <oj-progress-circle id="progressCircle"
+                value="-1">
+            </oj-progress-circle>
+        </div>
+    </oj-bind-if>
+    <oj-bind-if test="[[parents().length > 0]]">
+        <oj-validation-group id="trackerAdd">
+            <oj-form-layout class="oj-formlayout-full-width"
+                direction="column"
+                user-assistance-density="compact">
+                <div class="oj-flex">
+                    <div class="oj-flex-item oj-sm-padding-2x-horizontal">
+                        <div class="oj-sm-padding-1x-top">
+                            <oj-select-single id="parentID"
+                                label-hint="[[parentIDLabel]]"
+                                item-text="[[getParentsItemText]]"
+                                value="{{parentValue}}"
+                                data="[[parentsDataProvider]]"
+                                readonly="[[parents().length == 0]]">
+                                <template slot="collectionTemplate"
+                                    data-oj-as="collection">
+                                    <oj-table id="table1"
+                                        aria-label="select results"
+                                        accessibility.row-header="[['name']]"
+                                        horizontal-grid-visible="disabled"
+                                        vertical-grid-visible="disabled"
+                                        selection-mode='{"row": "single"}'
+                                        columns-default='{"resizable": "disabled",
+                                                    "sortable": "disabled"}'
+                                        columns="[[parentsColumns]]"
+                                        class="oj-select-results"
+                                        data="[[collection.data]]"
+                                        selected.row="[[collection.selected]]"
+                                        current-row="{{collection.currentRow}}"
+                                        on-oj-row-action="[[collection.handleRowAction]]">
+                                        <template slot="cellTemplate"
+                                            data-oj-as="cell">
+                                            <oj-highlight-text text="[[String(cell.data)]]"
+                                                match-text="[[collection.searchText]]"></oj-highlight-text>
+                                        </template>
+                                    </oj-table>
+                                </template>
+                            </oj-select-single>
+                        </div>
+                        <div class="oj-sm-padding-1x-top">
+                            <oj-input-text id="accNameID"
+                                value="{{accNameValue}}"
+                                disabled
+                                label-hint="[[accNameLabel]]"></oj-input-text>
+                        </div>
+                        <div class="oj-sm-padding-1x-top">
+                            <oj-select-single id="interestID"
+                                label-hint="[[interestLabel]]"
+                                item-text="[[getBenesItemText]]"
+                                value="{{interestValue}}"
+                                data="[[interestDataProvider]]"
+                                disabled="[[isDisabled]]">
+                                <template slot="collectionTemplate"
+                                    data-oj-as="collection">
+                                    <oj-table id="table1"
+                                        aria-label="select results"
+                                        accessibility.row-header="[['descr']]"
+                                        horizontal-grid-visible="disabled"
+                                        vertical-grid-visible="disabled"
+                                        selection-mode='{"row": "single"}'
+                                        columns-default='{"resizable": "disabled",
+                                                    "sortable": "disabled"}'
+                                        columns="[[interestsColumns]]"
+                                        class="oj-select-results"
+                                        data="[[collection.data]]"
+                                        selected.row="[[collection.selected]]"
+                                        current-row="{{collection.currentRow}}"
+                                        on-oj-row-action="[[collection.handleRowAction]]">
+                                        <template slot="cellTemplate"
+                                            data-oj-as="cell">
+                                            <oj-highlight-text text="[[String(cell.data)]]"
+                                                match-text="[[collection.searchText]]"></oj-highlight-text>
+                                        </template>
+                                    </oj-table>
+                                </template>
+                            </oj-select-single>
+                        </div>
+                    </div>
+                    <div class="oj-sm-flex-initial oj-flex-item oj-sm-padding-2x-horizontal">
+                        <div class="oj-sm-padding-1x-top">
+                            <oj-input-text id="itAccID"
+                                value="{{accID}}"
+                                label-hint="[[IdLabel]]"
+                                on-keypress="[[preventNonNumbers]]"
+                                required
+                                user-assistance-density="compact"></oj-input-text>
+                        </div>
+                        <div class="oj-sm-padding-1x-top">
+                            <oj-select-single id="roundingID"
+                                label-hint="[[roundingIDLabel]]"
+                                item-text="shortDescr"
+                                value="{{roundingValue}}"
+                                readonly
+                                data="[[roundingDataProvider]]"></oj-select-single>
+                        </div>
+                        <div class="oj-sm-padding-1x-top">
+                            <oj-input-number id="itAmountID"
+                                value="{{amountValue}}"
+                                label-hint="[[AmountLabel]]"
+                                converter="[[numberConverter]]"
+                                required
+                                user-assistance-density="compact"></oj-input-number>
+                        </div>
+                    </div>
+                    <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-flex-end">
+                        <oj-form-layout class="oj-form-layout-column-min-width oj-sm-padding-1x-top oj-sm-padding-2x-end"
+                            direction="column"
+                            style="max-width: 22vh;"
+                            user-assistance-density="compact">
+
+                            <oj-c-button chroming="callToAction"
+                                style="min-width:21.7vh;"
+                                label="[[createLabel]]"
+                                on-oj-action="[[handelApply]]">
+                                <span slot="startIcon"
+                                    class="oj-ux-ico-invoice-create"></span>
+                            </oj-c-button>
+
+                            <oj-c-button chroming="danger"
+                               style="min-width:21.7vh;"
+                                label="[[cancelLabel]]"
+                                on-oj-action="[[handleCancel]]">
+                                <span slot="startIcon"
+                                    class="oj-ux-ico-multiply"></span>
+                            </oj-c-button>
+                            <oj-select-single :id="[[itsSexID]]"
+                                value="{{currencyValue}}"
+                                item-text="descr"
+                                data="[[currencyDataProvider]]"
+                                label-hint="[[currencyLabel]]"
+                                readonly="[[Currencies().length == 1]]">
+                            </oj-select-single>
+
+                        </oj-form-layout>
+                    </div>
+                </div>
+                <div class="oj-flex oj-sm-padding-2x-horizontal"
+                    style="margin-top: -1.5vh;">
+                    <oj-input-text id="amountSpellingID"
+                        value="{{amountSpellingValue}}"
+                        label-hint="[[amountSpellingLabel]]"
+                        disabled></oj-input-text>
+                </div>
+                <div class="oj-flex oj-sm-padding-2x-horizontal"
+                    style="margin-top: -0.5vh;">
+                    <oj-input-text id="noteID"
+                        value="{{noteValue}}"
+                        label-hint="[[noteLabel]]"></oj-input-text>
+                </div>
+            </oj-form-layout>
+
+            <div class="oj-divider-top oj-flex oj-sm-padding-1x-top">
+                <div id="navigationWrapper"
+                    class="oj-sm-flex-initial oj-flex-item oj-sm-padding-2x-horizontal"
+                    style="max-width: 7.8%;">
+                    <oj-navigation-list selection="{{vSelectedItem}}"
+                        display="icons"
+                        style="margin-top: 6vh;"
+                        aria-label="Choose a navigation item"
+                        drill-mode="none"
+                        on-oj-selection-action="[[handleVSelectionAction]]"
+                        data="[[vDataProvider]]">
+                        <template slot="itemTemplate"
+                            data-oj-as="item">
+                            <li class=" li-button">
+                                <a href="#">
+                                    <span :class="[['oj-navigationlist-item-icon ' + item.data.icons]]"></span>
+                                    <oj-bind-text value="[[item.data.name]]"></oj-bind-text>
+                                </a>
+                            </li>
+                        </template>
+                    </oj-navigation-list>
+                </div>
+                <div id="dialogWrapper"
+                    class="oj-flex-item oj-sm-padding-2x-horizontal">
+                    <oj-dialog :id="[[itsAccountDialog]]"
+                        :class="[[vSelectedItem()== 'cheques'?'cheques-book-dialog':'open-account-dialog']]"
+                        position.at.horizontal="[[hPosition]]"
+                        position.my.horizontal="[[hPosition]]"
+                        position.at.vertical="[[vPosition]]"
+                        position.my.vertical="[[vPosition]]"
+                        position.offset.y="[[yOffset]]"
+                        position.offset.x="[[xOffset]]"
+                        position.collision="flipfit"
+                        dialog-title="[[openAccountTitle]]">
+                        <oj-module config="[[accCardModuleConfig]]">
+                        </oj-module>
+                    </oj-dialog>
+                </div>
+
+                <oj-bind-if test="[[vSelectedItem() == null]]">
+                    <div class="oj-flex-item oj-sm-padding-2x-horizontal"
+                        style="margin-top: 4vh;max-width: 92.2%;">
+                        <oj-table id="t2"
+                            data="[[accLinksDataProvider]]"
+                            columns="[[linkColumns]]">
+
+                            <template slot="actionTemplate"
+                                data-oj-as="cell">
+                                <oj-button display="icons"
+                                    chroming="danger"
+                                    class="oj-button-sm"
+                                    label="[[deleteLabel]]"
+                                    on-oj-action="[[handleDeleteLink]]"
+                                    data-oj-clickthrough="disabled">
+                                    <span slot="startIcon"
+                                        class="oj-ux-ico-multiply"></span>
+                                </oj-button>
+                            </template>
+
+
+                        </oj-table>
+                    </div>
+                </oj-bind-if>
+        </oj-validation-group>
+    </oj-bind-if>
+</div>
+
+
+
+
+
+<oj-c-message-toast class="oj-color-invert"
+    data="[[messages]]"
+    on-oj-close="[[handleCloseMessage]]">
+</oj-c-message-toast>

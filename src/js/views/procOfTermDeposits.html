@@ -1,0 +1,111 @@
+<!--  1 The First Table -->
+<div class="oj-flex oj-lg-justify-content-center oj-sm-padding-2x-top">
+    <oj-table id="tableForDepositNum"
+        aria-label="Deposits Number Table"
+        selected="{{selectedDepositNumItem}}"
+        selection-mode.row="single"
+        on-selected-changed="[[selectedChangedListener]]"
+        class="oj-md-margin-2x-horizontal oj-md-12 demoTable"
+        data="[[depositNumTabDataProvider]]"
+        columns="{{depositNumTableColumns}}"></oj-table>
+</div>
+
+<term-deposit current-router="[[router._activeState.path]]"
+    term-sector="{{termSectorVal}}"
+    term-year="{{termYearVal}}"
+    term-month="{{termMonthVal}}"
+    term-first-amount="{{termFirstAmountVal}}"
+    term-deposit-amount="{{termDepositAmountVal}}"
+    term-write-amount="{{termWriteAmountVal}}"
+    term-benefit-symbol="{{termBenefitSymbolVal}}"
+    term-benefit-rate="{{creditIntValue}}"
+    term-benefit-descr="{{termBenefitDescrVal}}"
+    term-benefit-amount="{{termBenefitAmountVal}}"
+    term-benefit2-symbol="{{termBenefit2SymbolVal}}"
+    term-benefit2-rate="{{creditInt2Value}}"
+    term-benefit2-descr="{{termBenefit2DescrVal}}"
+    term-spp-int-amount="{{termSppIntAmountVal}}"
+    term-interest-acc-num="{{termInterestAccNumVal}}"
+    term-interest-acc-name="{{termInterestAccNameVal}}"
+    term-first-deposit-date="{{termFirstDepositDateVal}}"
+    term-deposit-date="{{termDepositDateVal}}"
+    term-deserve-date="{{termDeserveDateVal}}"
+    term-deserved-date="{{termDeservedDateVal}}"
+    term-deposit-acc-num="{{termDepositAccNumVal}}"
+    term-deposit-acc-name="{{termDepositAccNameVal}}"
+    term-cli-acc-num="{{termCliAccNumVal}}"
+    term-cli-acc-name="{{termCliAccNameVal}}"
+    term-current-year-int="{{termCurrentYearIntVal}}"
+    term-next-year-int="{{termNextYearIntVal}}"
+    term-sum-of-int="{{termSumOfIntVal}}"
+    term-income-tax="{{termIncomeTaxVal}}"
+    term-local-admin="{{termLocalAdminVal}}"
+    term-reconstruct="{{termReconstructVal}}"
+    term-sum-of-discounts="{{termSumOfDiscountsVal}}"></term-deposit>
+
+
+<!-- 8 The Table In The Under -->
+<div class="oj-flex oj-lg-justify-content-center oj-sm-padding-2x-top">
+    <oj-table id="tableForDepositClient"
+        aria-label="Deposit Clients Table"
+        accessibility.row-header="name"
+        class="oj-md-margin-2x-horizontal oj-md-12 demoTable"
+        data="[[DepositClientTabDataProvider]]"
+        columns="{{depositClientTableColumns}}"></oj-table>
+
+    <script type="text/html"
+        id="cli_name">
+<td>
+    <oj-bind-text value="[[$context.row.firstName + ' ' + $context.row.fatherName + ' ' + $context.row.lastName]]"></oj-bind-text>
+</td>
+</script>
+</div>
+
+<!--  9  -->
+<!-- value="{{agreement}}" -->
+<div class="oj-flex oj-md-justify-content-center oj-sm-padding-2x-top oj-md-margin-10x-bottom">
+    <oj-checkboxset id="checkCorrectionId"
+        label-edge="inside">
+        <oj-option style="font-weight: bold;"
+            value="correction"><oj-bind-text value="[[checkBoxLabel]]"></oj-bind-text></oj-option>
+    </oj-checkboxset>
+</div>
+
+
+<!-- 10 The Buttons Under Screen -->
+<div
+    class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center oj-sm-justify-content-flex-end oj-md-margin-2x-vertical">
+
+    <!-- back button -->
+    <oj-c-button class="oj-md-padding-2x-horizontal"
+        style="min-width: 20vh;"
+        chroming="danger"
+        label="[[backButton]]"
+        display="all"
+        on-oj-action="[[handleScreenBack]]">
+        <span slot="startIcon"
+            class="oj-ux-ico-back-parent"></span>
+    </oj-c-button>
+
+    <!-- ok button -->
+    <oj-c-button class="oj-button-sm"
+        style="min-width: 20vh;"
+        chroming="callToAction"
+        display="all"
+        label="[[acceptButton]]"
+        on-oj-action="[[handleScreenApply]]"> <span slot="startIcon"
+            class="oj-ux-ico-check"></span>
+    </oj-c-button>
+
+    <!-- cancel button -->
+    <oj-c-button class="oj-md-padding-2x-horizontal"
+        style="min-width: 20vh;"
+        chroming="danger"
+        label="[[cancelButton]]"
+        display="all"
+        on-oj-action="[[handleScreenClose]]">
+        <span slot="startIcon"
+            class="oj-ux-ico-multiply"></span>
+    </oj-c-button>
+
+</div>

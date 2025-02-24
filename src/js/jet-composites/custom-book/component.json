@@ -1,0 +1,44 @@
+{
+    "name": "custom-book",
+    "description": "A book element that can display the book data.",
+    "displayName": "Custom Book",
+    "version": "15.0.0",
+    "jetVersion": ">=14.1.0 <=15.0.0",
+    "properties": {
+      "bookId": {
+        "description": "The book's Id's.",
+        "displayName": "ID",
+        "type": "number"
+      },
+      "bookTitle": {
+        "description": "The book's title.",
+        "displayName": "Title",
+        "type": "string"
+      },
+      "src": {
+        "description": "The book image source.",
+        "displayName": "Src",
+        "type": "string"
+      },
+      "author": {
+        "description": "The book author.",
+        "displayName": "Author",
+        "type": "string"
+      },
+      "type": {
+        "description": "The book type.",
+        "displayName": "Type",
+        "type": "string"
+      },
+      "bookRating": {
+        "description": "The book Rating.",
+        "displayName": "Rating",
+        "type": "number"
+      },
+      "clickCallback": {
+        "description": "The book click callback to execute.",
+        "displayName": "OnClick",
+        "type": "function"
+      }
+    }
+  }

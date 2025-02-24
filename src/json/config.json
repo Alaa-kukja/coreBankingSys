@@ -1,0 +1,18 @@
+{
+  "isSecure": false,
+  "host": "192.168.1.5",
+  "port": "4000",
+  "endpoints": {
+    "getUserLogin": "login",
+    "getToken": "token",
+    "getTable": "table",
+    "getOjTable": "ojTable",
+    "editTable": "editTable",
+    "editTables": "editTables",
+    "getLookup": "lookup",
+    "deleteRows": "deleteRows",
+    "getRootNode": "RootNode",
+    "checkBlackList": "check_black_list",
+    "logout": "logout"
+  }
+}

@@ -1,0 +1,198 @@
+:root {
+    /* --oj-typography-heading-2xl-font-size:                     2.5rem;
+    --oj-typography-heading-2xl-font-weight:                   900;
+    --oj-typography-heading-2xl-line-height:                   1.3;
+    --oj-typography-heading-xl-font-size:                      2.25rem;
+    --oj-typography-heading-xl-font-weight:                    900;
+    --oj-typography-heading-xl-line-height:                    1.222;
+    --oj-typography-heading-lg-font-size:                      2rem;
+    --oj-typography-heading-lg-font-weight:                    900;
+    --oj-typography-heading-lg-line-height:                    1.25;
+    --oj-typography-heading-md-font-size:                      1.75rem;
+    --oj-typography-heading-md-font-weight:                    900;
+    --oj-typography-heading-md-line-height:                    1.2857;
+    --oj-typography-heading-sm-font-size:                      1.5rem;
+    --oj-typography-heading-sm-font-weight:                    900;
+    --oj-typography-heading-sm-line-height:                    1.3333;
+    --oj-typography-heading-xs-font-size:                      1.25rem;
+    --oj-typography-heading-xs-font-weight:                    900;
+    --oj-typography-heading-xs-line-height:                    1.4;
+    --oj-typography-subheading-2xl-font-size:                  2.25rem;
+    --oj-typography-subheading-2xl-font-weight:                bold;
+    --oj-typography-subheading-2xl-line-height:                1.2222;
+    --oj-typography-subheading-xl-font-size:                   2rem;
+    --oj-typography-subheading-xl-font-weight:                 bold;
+    --oj-typography-subheading-xl-line-height:                 1.25;
+    --oj-typography-subheading-lg-font-size:                   1.75rem;
+    --oj-typography-subheading-lg-font-weight:                 bold;
+    --oj-typography-subheading-lg-line-height:                 1.2857;
+    --oj-typography-subheading-md-font-size:                   1.5rem;
+    --oj-typography-subheading-md-font-weight:                 bold;
+    --oj-typography-subheading-md-line-height:                 1.3333;
+    --oj-typography-subheading-sm-font-size:                   1.25rem;
+    --oj-typography-subheading-sm-font-weight:                 bold;
+    --oj-typography-subheading-sm-line-height:                 1.4;
+    --oj-typography-subheading-xs-font-size:                   1rem;
+    --oj-typography-subheading-xs-font-weight:                 bold;
+    --oj-typography-subheading-xs-line-height:                 1.5; */
+    --oj-typography-body-xl-font-size: 1.25rem;
+    --oj-typography-body-xl-line-height: 1.4;
+    --oj-typography-body-lg-font-size: 1.125rem;
+    --oj-typography-body-lg-line-height: 1.3333;
+    --oj-typography-body-md-font-size: 1rem;
+    --oj-typography-body-md-line-height: 1.25;
+    --oj-typography-body-sm-font-size: 0.859rem;
+    --oj-typography-body-sm-line-height: 1.2;
+    --oj-typography-body-xs-font-size: 0.75rem;
+    --oj-typography-body-xs-line-height: 1.3333;
+    --oj-typography-body-2xs-font-size: 0.625rem;
+    --oj-typography-body-2xs-line-height: 1.2;
+
+    --oj-collection-grid-cell-padding: .3rem;
+    --oj-collection-list-row-height: 1rem;
+    --oj-collection-list-cell-padding-vertical: 0.3rem;
+    --oj-core-touch-target-min-size: 1.8rem;
+    --oj-form-layout-margin-bottom: 0.3rem;
+    --oj-form-layout-column-gutter: 1rem;
+}
+
+:root {
+    --oj-main-background-color: #fbfbfb;
+    --oj-border-color: #d4d1d1;
+    --oj-collection-header-color: #d9dee1;
+    --oj-text-field-height: 1.8rem;
+    --oj-button-height: 1.8rem;
+    --oj-form-layout-start-edge-label-to-value-padding: 0.5rem;
+    --oj-current-bg-color: #eee;
+    --oj-button-call-to-action-chrome-bg-color: #2076a9f2;
+    --oj-second-background-color: #d3eaf2;
+    --oj-input-background-color: #fcfbfb;
+    --oj-button-background-color: #dbdbdc;
+    --oj-button-border-color: #9c9696;
+}
+
+:root {
+    --oj-form-layout-start-edge-column-max-width: 100%;
+}
+
+/* ---------noha-------- */
+:root {}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    direction: rtl;
+}
+
+.form-input:first-child {
+    background-color: var(--oj-input-background-color);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    background-color: white;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/*-----------------------------------------------------------------------*/
+.master-module {
+    background-color: var(--oj-main-background-color);
+}
+
+.main-container {
+    padding: 0%;
+    border: solid 1px var(--oj-border-color);
+    border-radius: 5px;
+    margin: auto;
+    background-color: var(--oj-second-background-color);
+}
+
+.internalOutTransForm {
+    display: grid;
+    padding: 20px 10px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+}
+
+.form-row>div {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 5px;
+}
+
+.form-row .form-btn {
+    background-color: var(--oj-button-background-color);
+    border: solid 1px var(--oj-button-border-color);
+    border-radius: 5px;
+}
+
+.form-row .form-btn button {
+    border: none
+}
+
+.form-row .form-btn span {
+    padding: 0;
+    text-align: center;
+    margin: auto;
+}
+
+.form-row .form-input {}
+
+.form-row.textarea {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 10px;
+}
+
+.form-row-textarea-commPayer {
+    display: grid;
+    grid-template-columns: minmax(80%, 80%) repeat(1, auto);
+    column-gap: 10px;
+    justify-content: center;
+}
+
+.form-row-textarea-commPayer:first-child {
+    padding: 0%;
+    border: solid 1px var(--oj-border-color);
+    border-radius: 5px;
+    margin: auto;
+    background-color: var(--oj-input-background-color);
+    margin-inline-start: 10px;
+}
+
+.form-row.form-row-commAmount {
+    grid-template-columns: minmax(30%, 40%) repeat(1, auto);
+    justify-content: center;
+}
+
+.form-row.form-footer {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20%;
+}
+
+.form-row.form-footer>div {
+    display: inline-grid;
+    grid-template-columns: repeat(auto-fill, 20%);
+}
+
+.form-row.form-footer>div:last-child {
+    justify-content: end;
+    align-items: end;
+}
+
+.form-row.form-footer .form-btn button {}

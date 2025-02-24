@@ -1,0 +1,41 @@
+<div class="login-view"> </div>
+<div
+  :class="[[(document.dir=='rtl'?'rtl-app-login':'ltr-app-login') +' oj-panel oj-panel-shadow-xl oj-sm-padding-12x-top oj-sm-padding-12x-horizontal  oj-bg-info-10 oj-sm-margin-12x-end']]">
+  <div class="oj-sm-padding-8x-top oj-sm-padding-2x-horizontal">
+    <h3 class="oj-page-center oj-text-color-disabled app-login-title">
+      <oj-bind-text value="[[appName]]"></oj-bind-text></h3>
+    <div class="oj-sm-padding-2x-top oj-sm-padding-8x-horizontal">
+      <oj-form-layout direction="column"
+        user-assistance-density="compact">
+        <oj-input-text value="{{userLogin}}"
+          class="user-name-field"
+          autofocus="true"
+          label-hint="[[userNameLabel]]"
+          required="true">
+          <span slot="end"
+            class="oj-text-field-start-end-icon oj-ux-ico-contact-permission oj-sm-margin-2x-end"
+            role="img"
+            :title="[[userNameLabel]]"></span>
+        </oj-input-text>
+
+        <oj-input-password value="{{userPassword}}"
+          class="login-field "
+          style="color: var(--oj-menu-color);"
+          label-hint="[[passwordLabel]]"
+          mask-icon="visible">
+        </oj-input-password>
+        <div class="oj-divider-top oj-flex oj-sm-justify-content-flex-end oj-sm-padding-4x oj-sm-margin-4x-top">
+          <oj-button class="oj-login-button"
+            chroming="solid">
+            <span>
+              <oj-bind-text value="[[loginHint]]"></oj-bind-text>
+            </span>
+            <span slot="startIcon"
+              class="oj-ux-ico-enter"
+              style="transform:rotate(180deg);"></span>
+          </oj-button>
+        </div>
+      </oj-form-layout>
+    </div>
+  </div>
+</div>

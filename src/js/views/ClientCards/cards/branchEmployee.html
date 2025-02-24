@@ -1,0 +1,70 @@
+<div class="oj-hybrid-padding">
+  <oj-table id="table"
+    id="table"
+    aria-label="employees Table"
+    accessibility.row-header="empNameID"
+    selection-mode.row="single"
+    class="tab-table-container"
+    data="[[ordPeopleDataProvider]]"
+    on-selected-changed="[[selectedChangedListener]]"
+    columns-default.sortable="disabled"
+    layout="fixed"
+    columns="[[columns]]">
+    <template slot="clientNoTemplate"
+      data-oj-as="cell">
+      <oj-bind-text value="[[numberConverter.format(cell.data)]]"></oj-bind-text>
+    </template>
+
+    <template slot="profileNoTemplate"
+      data-oj-as="cell">
+      <oj-bind-text value="[[numberConverter.format(cell.data)]]"></oj-bind-text>
+    </template>
+
+
+    <template slot="firstNameTemplate"
+      data-oj-as="cell">
+      <oj-bind-text value="[[cell.data]]"></oj-bind-text>
+    </template>
+
+    <template slot="lastNameTemplate"
+      data-oj-as="cell">
+      <oj-bind-text value="[[cell.data]]"></oj-bind-text>
+    </template>
+
+    <template slot="fatherTemplate"
+      data-oj-as="cell">
+      <oj-bind-text value="[[cell.data]]"></oj-bind-text>
+    </template>
+
+    <template slot="motherTemplate"
+      data-oj-as="cell">
+      <oj-bind-text value="[[cell.data]]"></oj-bind-text>
+      <!-- </template>
+    <template slot="noData">
+      <div>
+        <div style="position: absolute;top: 0;bottom: 0; left: 0;right: 0;margin: auto;height: 100px;width: 100px;"
+          class="oj-flex-item">
+          <oj-progress-circle id="progressCircle"
+            value="-1">
+          </oj-progress-circle>
+        </div>
+      </div>
+    </template> -->
+  </oj-table>
+</div>
+
+<oj-c-message-banner data="[[messageBannerData]]"
+  detail-template-value="detailList"
+  type="page"
+  on-oj-close="[[handleCloseMessageBanner]]">
+  <template slot="detailList"
+    data-oj-as="context">
+    <ul>
+      <oj-bind-for-each data="[[context.data.detailList]]">
+        <template>
+          <li><oj-bind-text value="[[$current.data]]"></oj-bind-text></li>
+        </template>
+      </oj-bind-for-each>
+    </ul>
+  </template>
+</oj-c-message-banner>

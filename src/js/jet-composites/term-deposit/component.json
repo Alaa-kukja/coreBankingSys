@@ -1,0 +1,184 @@
+{
+    "name": "term-deposit",
+    "description": "A screen containing common elements of term deposit screens.",
+    "displayName": "Term deposit",
+    "version": "15.0.0",
+    "jetVersion": ">=14.1.0 <=15.0.0",
+    "properties": {
+        "currentRouter": {
+            "description": "The router path for this composite",
+            "displayName": "RouterPath",
+            "type": "string"
+        },
+        "termPrimNumber": {
+            "description": "The prim number of term",
+            "displayName": "PrimNumber",
+            "type": "number"
+        },
+        "termSubNumber": {
+            "description": "The sub number of term",
+            "displayName": "SubNumber",
+            "type": "number"
+        },
+        "termSector": {
+            "description": "The term deposit sector",
+            "displayName": "Sector",
+            "type": "string"
+        },
+        "termYear": {
+            "description": "The term deposit time in years",
+            "displayName": "Year",
+            "type": "number"
+        },
+        "termMonth": {
+            "description": "The term deposit time in months",
+            "displayName": "Month",
+            "type": "number"
+        },
+        "termFirstAmount": {
+            "description": "The term first amount",
+            "displayName": "FirstAmount",
+            "type": "number"
+        },
+        "termDepositAmount": {
+            "description": "The term deposit amount",
+            "displayName": "DepositAmount",
+            "type": "number"
+        },
+        "termWriteAmount": {
+            "description": "The term deposit amount in writing",
+            "displayName": "AmountInWriting",
+            "type": "string"
+        },
+        "termBenefitSymbol": {
+            "description": "The term benefit symbol",
+            "displayName": "BenefitSymbol",
+            "type": "number"
+        },
+        "termBenefitRate": {
+            "description": "The term benefit rate",
+            "displayName": "BenefitRate",
+            "type": "number"
+        },
+        "termBenefitDescr": {
+            "description": "The term benefit description",
+            "displayName": "BenefitDescr",
+            "type": "string"
+        },
+        "termBenefit2Symbol": {
+            "description": "The term benefit symbol",
+            "displayName": "BenefitSymbol",
+            "type": "number"
+        },
+        "termBenefit2Rate": {
+            "description": "The term benefit rate",
+            "displayName": "BenefitRate",
+            "type": "number"
+        },
+        "termBenefit2Descr": {
+            "description": "The term benefit description",
+            "displayName": "BenefitDescr",
+            "type": "string"
+        },
+        "termBenefitAmount": {
+            "description": "The term benefit amount",
+            "displayName": "BenefitAmount",
+            "type": "number"
+        },
+        "termSppIntAmount": {
+            "description": "The term spp int amount",
+            "displayName": "SppIntAmount",
+            "type": "number"
+        },
+        "termInterestAccNum": {
+            "description": "The term interest Account Number",
+            "displayName": "InterestAccNum",
+            "type": "number"
+        },
+        "termInterestAccName": {
+            "description": "The term interest account name",
+            "displayName": "BenefitAccName",
+            "type": "string"
+        },
+        "termFirstDepositDate": {
+            "description": "The term first date for deposit",
+            "displayName": "FirstDepositDate",
+            "type": "date"
+        },
+        "termDepositDate": {
+            "description": "The term start date for deposit",
+            "displayName": "DepositDate",
+            "type": "date"
+        },
+        "termDeserveDate": {
+            "description": "The term deserve date for deposit",
+            "displayName": "DeserveDate",
+            "type": "date"
+        },
+        "termDeservedDate": {
+            "description": "The term deserved date for deposit",
+            "displayName": "DeservedDate",
+            "type": "date"
+        },
+        "termDepositAccNum": {
+            "description": "The term deposit account number",
+            "displayName": "DepositAccNum",
+            "type": "number"
+        },
+        "termDepositAccName": {
+            "description": "The term deposit account name",
+            "displayName": "DepositAccName",
+            "type": "string"
+        },
+        "termCliAccNum": {
+            "description": "The term deposit client account number",
+            "displayName": "DepositAccNum",
+            "type": "number"
+        },
+        "termCliAccName": {
+            "description": "The term deposit client account name",
+            "displayName": "DepositAccName",
+            "type": "string"
+        },
+        "termDepositDeservedDate": {
+            "description": "The term deposit deserved date",
+            "displayName": "DepositDeservedDate",
+            "type": "number"
+        },
+        "termCurrentYearInt": {
+            "description": "The current year interest value for term",
+            "displayName": "CurrentYearInt",
+            "type": "number"
+        },
+        "termNextYearInt": {
+            "description": "The next year interest value for term",
+            "displayName": "NextYearInt",
+            "type": "number"
+        },
+        "termSumOfInt": {
+            "description": "The sum of interests values for term",
+            "displayName": "SumOfInt",
+            "type": "number"
+        },
+        "termIncomeTax": {
+            "description": "The income tax value for term",
+            "displayName": "IncomeTax",
+            "type": "number"
+        },
+        "termLocalAdmin": {
+            "description": "The local admin for term",
+            "displayName": "LocalAdmin",
+            "type": "number"
+        },
+        "termReconstruct": {
+            "description": "The reconstruct for term",
+            "displayName": "Reconstruct",
+            "type": "number"
+        },
+        "termSumOfDiscounts": {
+            "description": "The sum of discounts for term",
+            "displayName": "SumOfDiscounts",
+            "type": "number"
+        }
+    }
+}

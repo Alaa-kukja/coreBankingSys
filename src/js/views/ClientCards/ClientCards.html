@@ -1,0 +1,97 @@
+<oj-bind-if test="[[vSelectedItem() != null]]">
+    <oj-bind-if test="[[vSelectedItem() == 'cheques']]">
+        <oj-validation-group id="ChequeValidationGroup">
+            <oj-form-layout id="formLayoutOptions"
+                class="oj-formlayout-divider-width"
+                max-columns="1"
+                direction="row"
+                style="margin-top: 2vh;"
+                user-assistance-density="compact">
+                <oj-input-number id="itFromChequeID"
+                    value="{{fromChequeValue}}"
+                    label-hint="[[fromChequeLabel]]"
+                    converter="[[numberConverter]]"
+                    required></oj-input-number>
+                <oj-input-number id="itToChequeID"
+                    value="{{toChequeValue}}"
+                    label-hint="[[toChequeLabel]]"
+                    min=[[fromChequeValue]]
+                    converter="[[numberConverter]]"
+                    required></oj-input-number>
+                <div class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center 
+        oj-sm-flex-items-initial oj-sm-justify-content-flex-end">
+                    <oj-c-button class="oj-button-sm oj-sm-padding-2x-horizontal"
+                        class="_oj-same-width-button"
+                        chroming="danger"
+                        display="icons"
+                        label="[[cancelLabel]]"
+                        on-oj-action="[[handleCancel]]"> <span slot="startIcon"
+                            class="oj-ux-ico-multiply"></span>
+                    </oj-c-button>
+                    <oj-c-button class="oj-button-sm"
+                        chroming="callToAction"
+                        display="icons"
+                        label="[[applyLabel]]"
+                        on-oj-action="[[handleApply]]"> <span slot="startIcon"
+                            class="oj-ux-ico-check"></span>
+                    </oj-c-button>
+                </div>
+            </oj-form-layout>
+        </oj-validation-group>
+    </oj-bind-if>
+    <oj-bind-if test="[[(vSelectedItem() != 'cheques')&&(vSelectedItem() != null)]]">
+        <div class="oj-sm-padding-10x-bottom oj-divider-top">
+            <oj-tab-bar selection="{{currClientType}}"
+                display="[[medium() ? 'all' : 'icons']]"
+                layout="[[medium() ? 'stretch' : 'condense']]"
+                edge="top"
+                data="[[clientTypeDataProvider]]"
+                id="tabbar"
+                class="oj-flex oj-sm-justify-content-center oj-md-justify-content-center oj-lg-justify-content-flex-end oj-lg-padding-1x-top">
+                <template slot="itemTemplate"
+                    data-oj-as="item">
+                    <li class="button"
+                        style="min-width: 22vh;border-radius: 4px;">
+                        <a href="#">
+                            <span :class="[['oj-tabbar-item-icon ' + item.data.icons]]"></span>
+                            <oj-bind-text value="[[item.data.name]]"></oj-bind-text>
+                        </a>
+                    </li>
+                </template>
+            </oj-tab-bar>
+        </div>
+
+        <oj-module config="[[cardsModuleConfig(currClientType())]]">
+        </oj-module>
+        <!-- buttons -->
+
+
+        <div
+            class="oj-flex oj-divider-top oj-sm-flex-items-initial oj-sm-justify-content-flex-end oj-sm-padding-2x-top">
+            <div class="oj-flex-item">
+                <oj-c-button class="oj-button-sm oj-sm-padding-2x-horizontal"
+                    class="_oj-same-width-button"
+                    chroming="danger"
+                    display="all"
+                    label="[[cancelLabel]]"
+                    on-oj-action="[[handleCancel]]"> <span slot="startIcon"
+                        class="oj-ux-ico-multiply"></span>
+                </oj-c-button>
+                <oj-c-button chroming="callToAction"
+                    class="_oj-same-width-button"
+                    label="[[applyLabel]]"
+                    on-oj-action="[[handleApply]]"
+                    disabled="[[isDisabled]]">
+                    <span slot="startIcon"
+                        class="oj-ux-ico-check"></span>
+                </oj-c-button>
+            </div>
+        </div>
+
+    </oj-bind-if>
+</oj-bind-if>
+
+<oj-c-message-toast class="oj-color-invert"
+    data="[[messages]]"
+    on-oj-close="[[handleCloseMessage]]">
+</oj-c-message-toast>

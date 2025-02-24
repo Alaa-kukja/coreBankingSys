@@ -1,0 +1,180 @@
+<!--
+ Copyright (c) 2014, 2023, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+
+  <div>
+    <oj-table
+      aria-label="Employess Table"
+      accessibility.row-header="empName"
+      selection-mode.row="single"
+      class="app-table-container"
+      dnd='{"reorder": {"columns": "enabled"}}'
+      data="[[$properties.empData]]"
+      edit-mode="rowEdit"
+      add-row-display="{{displayRow}}"
+      edit-row="{{editRow}}"
+      on-oj-before-row-edit="[[beforeRowEditListener]]"
+      on-oj-before-row-edit-end="[[beforeRowEditEndListener]]"
+      on-oj-before-row-add-end="[[beforeRowAddEndListener]]"
+      on-selected-changed="[[selectedChangedListener]]"
+      columns-default.sortable="disabled"
+      layout="fixed"
+      columns="[[columns]]">
+      <template slot="addRowTemplate"
+        data-oj-as="addRow">
+        <tr>
+          <td>
+            <oj-input-number aria-label="Id"
+              max="50000"
+              step="0"
+              required
+              value="{{addRowData().id}}"
+              class="addRowEditable"></oj-input-number>
+          </td>
+          <td>
+            <oj-input-text aria-label="Name"
+              value="{{addRowData().name}}"
+              class="addRowEditable"></oj-input-text>
+          </td>
+          <td>
+            <oj-input-date aria-label="Start Date"
+              value="{{addRowData().startdate}}"
+              class="addRowEditable"></oj-input-date>
+          </td>
+          <td>
+            <oj-input-number aria-label="Salary"
+              value="{{addRowData().salary}}"
+              class="addRowEditable"></oj-input-number>
+          </td>
+          <td>
+            <oj-toolbar data-oj-clickthrough="disabled"
+              chroming="borderless"
+              class="oj-sm-padding-0-vertical oj-sm-padding-4x-end oj-sm-float-end">
+              <oj-button class="oj-button-sm"
+                display="icons"
+                on-oj-action="[[handleAddSubmit]]"
+                data-oj-clickthrough="disabled">
+                <span slot="startIcon"
+                  class="oj-ux-ico-check"></span>
+                Submit
+              </oj-button>
+              <oj-button class="oj-button-sm"
+                display="icons"
+                on-oj-action="[[handleAddCancel]]"
+                data-oj-clickthrough="disabled">
+                <span slot="startIcon"
+                  class="oj-ux-ico-multiply"></span>
+                Cancel
+              </oj-button>
+            </oj-toolbar>
+          </td>
+        </tr>
+      </template>
+      <template slot="empIdTemplate"
+        data-oj-as="cell">
+        <oj-bind-text value="[[numberConverter.format(cell.data)]]"></oj-bind-text>
+      </template>
+
+      <template slot="empNameTemplate"
+        data-oj-as="cell">
+        <oj-bind-if test='[[cell.mode=="navigation"]]'>
+          <oj-bind-text value="[[cell.data]]"></oj-bind-text>
+        </oj-bind-if>
+
+        <oj-bind-if test='[[cell.mode=="edit"]]'>
+          <oj-input-text 
+            value="{{rowData.name}}"
+            class="editable"></oj-input-text>
+        </oj-bind-if>
+      </template>
+
+      <template slot="salaryTemplate"
+        data-oj-as="cell">
+        <oj-bind-if test='[[cell.mode=="navigation"]]'>
+          <oj-bind-text value="[[numberConverter.format(cell.data)]]"></oj-bind-text>
+        </oj-bind-if>
+
+        <oj-bind-if test='[[cell.mode=="edit"]]'>
+          <oj-input-number aria-label="Salary"
+              value="{{rowData.salary}}"
+              class="editable"></oj-input-number>
+        </oj-bind-if>
+      </template>
+
+      <template slot="dateTemplate"
+        data-oj-as="cell">
+        <oj-bind-if test='[[cell.mode=="navigation"]]'>
+          <oj-bind-text value="[[dateConverter.format(cell.data)]]"></oj-bind-text>
+        </oj-bind-if>
+
+        <oj-bind-if test='[[cell.mode=="edit"]]'>
+          <oj-input-date 
+            value="{{rowData.startdate}}"
+            class="editable"></oj-input-date>
+        </oj-bind-if>
+      </template>
+
+
+      <template slot="actionTemplate"
+        data-oj-as="cell">
+        <oj-bind-if test='[[cell.mode=="navigation"]]'>
+          <oj-button class="oj-button-sm"
+            display="icons"
+            chroming="borderless"
+            on-oj-action="[[handleUpdate]]"
+            data-oj-clickthrough="disabled">
+            <span slot="startIcon"
+              class="oj-ux-ico-edit"></span>
+            Edit
+          </oj-button>
+        </oj-bind-if>
+
+        <oj-bind-if test='[[cell.mode=="edit"]]'>
+          <oj-toolbar chroming="borderless"
+            class="oj-sm-padding-0-vertical oj-sm-padding-4x-end oj-sm-float-end">
+            <oj-button display="icons"
+              on-oj-action="[[handleDone]]"
+              class="oj-button-sm"
+              data-oj-clickthrough="disabled">
+              <span slot="startIcon"
+                class="oj-ux-ico-check"></span>
+              Save
+            </oj-button>
+            <oj-button display="icons"
+              class="oj-button-sm"
+              on-oj-action="[[handleCancel]]"
+              data-oj-clickthrough="disabled">
+              <span slot="startIcon"
+                class="oj-ux-ico-multiply"></span>
+              Cancel
+            </oj-button>
+          </oj-toolbar>
+        </oj-bind-if>
+      </template>
+    </oj-table>
+    <div class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center 
+      oj-sm-flex-items-initial oj-sm-justify-content-flex-end">
+      <oj-button 
+        class="oj-button-sm oj-sm-padding-2x-horizontal"
+        chroming="danger"
+        display="icons"
+        label="[[deleteRowLabel]]"
+        on-oj-action="[[handleDeleteRow]]"
+        disabled="[[isDisabled]]"> <span slot="startIcon"
+          class="oj-ux-ico-delete-all"></span>
+        <span></oj-button>
+      <oj-button 
+        class="oj-button-sm"
+        chroming="callToAction"
+        display="icons"
+        label="[[addRowLabel]]"
+        on-oj-action="[[handleAddRow]]"
+        disabled="[[isNavigationMode]]"> <span slot="startIcon"
+          class="oj-ux-ico-playlist-add-check"></span>
+        <span></oj-button>
+    </div>
+
+  </div>
+</div>

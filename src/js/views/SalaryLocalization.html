@@ -1,0 +1,238 @@
+<!-- 1 -->
+<div class="oj-flex  oj-sm-flex-wrap-nowrap oj-sm-justify-content-center oj-sm-align-items-center">
+    <oj-c-button class="oj-lg-flex oj-sm-margin-2x oj-c-button-md"
+        id="button4"
+        chroming="callToAction"
+        label=[[companyButtonVal]]
+        on-oj-action="[[companyButtonAction]]">
+    </oj-c-button>
+    <oj-input-text :id="[[companyId]]"
+        class=" oj-sm-margin-2x"
+        label-hint=""
+        value="{{company}}"
+        disabled="true"></oj-input-text>
+</div>
+<!-- 2 when we clicked on the company button-->
+
+<oj-dialog :id="[[itsAccountDialog]]"
+    class="open-account-dialog"
+    position.at.horizontal="end"
+    position.collision="flipfit"
+    dialog-title="[[companyButtonVal]]">
+    <oj-module config="[[companyClientModuleConfig]]">
+    </oj-module>
+</oj-dialog>
+
+
+
+
+<!-- Accounts we are needing to localized -->
+<div class="oj-flex oj-md-justify-content-center ">
+    <oj-label class="oj-focus-highlight oj-md-padding-4x-bottom oj-sm-padding-4x-top oj-sm-padding-4x-horizontal"
+        style="font-size: large;font-weight:bold; border: 1px solid gray; text-align: center; border-radius: 12px;">
+        <oj-bind-text value="[[labelAccountedVal]]"></oj-bind-text>
+    </oj-label>
+</div>
+
+<div class="oj-flex">
+    <div class="oj-flex-item oj-sm-width-3/4 oj-sm-padding-1x-horizontal oj-sm-padding-2x-bottom">
+        <oj-tab-bar style="margin-top: 2vh;"
+            selection="{{selectedItem2}}"
+            display="[[medium() ? 'all' : 'icons']]"
+            layout="[[medium() ? 'stretch' : 'condense']]"
+            edge="top"
+            data="[[dataProvider2]]"
+            id="tabbar"
+            class="oj-flex oj-sm-justify-content-center oj-md-justify-content-center oj-lg-justify-content-flex-end">
+            <template slot="itemTemplate"
+                data-oj-as="item">
+                <li class="li-button"
+                    style="min-width: 20vh;border-radius: 16px;">
+                    <a href="#">
+                        <span :class="[['oj-tabbar-item-icon ' + item.data.icons]]"></span>
+                        <oj-bind-text value="[[item.data.name]]"></oj-bind-text>
+                    </a>
+                </li>
+            </template>
+        </oj-tab-bar>
+        <!-- Module for 3 & 4 -->
+        <oj-module class="oj-flex-item oj-sm-margin-2x-top"
+            config="[[ModuleConfig2(selectedItem2())]]"> </oj-module>
+    </div>
+
+    <div class="oj-sm-flex-initial oj-flex-item oj-sm-width-1/4 oj-sm-margin-4x-top">
+
+        <oj-checkboxset id="checkboxSetId"
+            class="oj-md-padding-4x-bottom oj-sm-padding-2x-top oj-sm-padding-4x-horizontal oj-sm-margin-12x-start"
+            value="{{checkATM_Card}}"
+            style="justify-content: center;align-items: center; border: 1px solid gray;border-radius: 6px; text-align: center; font-weight: 500;max-width: 100%;height: 50px;">
+            <oj-option value="ATM_Card">
+                <oj-bind-text value="[[ATM_CardLabel]]"></oj-bind-text>
+            </oj-option>
+        </oj-checkboxset>
+
+        <oj-bind-if test="[[checkATM_Card() == 'ATM_Card']]">
+            <div class="oj-sm-padding-2x-horizontal oj-sm-padding-2x-top">
+
+
+                <oj-input-text id="latin_Name"
+                    class="oj-flex-item"
+                    label-hint="[[latin_NameLabel]]"></oj-input-text>
+
+                <!-- select single with table belonging to type of ATM_Card -->
+
+                <oj-select-single id="ATM"
+                    class="oj-sm-padding-2x-top"
+                    label-hint="[[ATM_CardTypeLabel]]"
+                    label-edge="inside"
+                    data="[[ATM_CardDataProvider]]"
+                    value="{{ATM_CardVal}}"
+                    item-text="[[getItemATM_Card]]">
+                    <template slot="collectionTemplate"
+                        data-oj-as="collection">
+                        <oj-table id="table1"
+                            selection-mode='{"row": "single"}'
+                            columns-default='{"resizable": "disabled",
+                                  "sortable": "disabled"}'
+                            columns="[[tableATM_CardColumns]]"
+                            class="oj-select-results"
+                            data="[[collection.data]]"
+                            selected.row="[[collection.selected]]"
+                            current-row="{{collection.currentRow}}"
+                            on-oj-row-action="[[collection.handleRowAction]]">
+                            <template slot="cellTemplate"
+                                data-oj-as="cell">
+                                <oj-highlight-text text="[[String(cell.data)]]"
+                                    match-text="[[collection.searchText]]"></oj-highlight-text>
+                            </template>
+                        </oj-table>
+                    </template>
+                </oj-select-single>
+            </div>
+            <!-- </div> -->
+        </oj-bind-if>
+    </div>
+</div>
+
+
+<div class="oj-flex oj-divider-top oj-sm-padding-2x-top oj-sm-margin-2x-top">
+    <div class="oj-flex"
+        style="width: 100%;">
+        <div class="oj-flex-item oj-sm-width-1/4 oj-sm-padding-1x-horizontal">
+            <oj-c-input-number id="idDiscount"
+                value="{{discountValue}}"
+                label-hint="[[discountLabel]]">
+            </oj-c-input-number>
+
+        </div>
+        <div class="oj-flex-item oj-sm-width-1/4 oj-sm-padding-1x-horizontal">
+            <oj-input-date id="from_date"
+                value="{{discountFromDate}}"
+                label-hint="[[discountStart_dateLabel]]">
+            </oj-input-date>
+        </div>
+        <div class="oj-flex-item oj-sm-width-1/4 oj-sm-padding-1x-horizontal">
+            <oj-input-date id="to_date"
+                value="{{discountToDate}}"
+                label-hint="[[discountEnd_dateLabel]]">
+            </oj-input-date>
+        </div>
+        <div class="oj-flex-item oj-sm-width-1/4 oj-sm-padding-1x-horizontal">
+            <oj-c-input-text id="Discount_Cause"
+                value="{{discountCause}}"
+                label-hint="[[Discount_CauseLabel]]">
+            </oj-c-input-text>
+        </div>
+    </div>
+    <div class="oj-flex oj-sm-margin-2x-top"
+        style="width: 75%;">
+        <div class="oj-flex-item oj-sm-width-1/4 oj-sm-padding-1x-horizontal">
+            <oj-c-input-text id="Account"
+                value="{{accDiscountNo}}"
+                label-hint="[[AccountLabel]]">
+            </oj-c-input-text>
+        </div>
+        <div class="oj-flex-item oj-sm-width-3/4 oj-sm-padding-1x-horizontal">
+            <oj-c-input-text id="Account_Name"
+                value="{{accDiscountName}}"
+                label-hint="[[Account_NameLabel]]">
+            </oj-c-input-text>
+        </div>
+    </div>
+</div>
+
+<!-- for four buttons in the bottom -->
+<div class="oj-flex oj-md-justify-content-flex-end oj-sm-margin-2x-top">
+    <!-- add button -->
+    <oj-button class="oj-md-padding-4x-horizontal oj-md-2 app-color-green"
+        chroming="solid"
+        label="[[addButton]]"
+        on-oj-action="[[acceptAction]]">
+        <span slot="startIcon"
+            class="oj-ux-ico-playlist-add-check"></span>
+    </oj-button>
+    <!-- delete button -->
+    <oj-button class="oj-md-padding-4x-horizontal oj-md-2 app-color-red"
+        chroming="danger"
+        label="[[deleteButton]]"
+        disabled="[[isDeleteRowDisabled]]"
+        on-oj-action="[[handleDeleteRow]]">
+        <span slot="startIcon"
+            class="oj-ux-ico-delete-all"></span>
+    </oj-button>
+    <!-- back button -->
+    <oj-button class="oj-md-padding-4x-horizontal oj-md-2 app-color-brown"
+        chroming="solid"
+        label="[[cancelButton]]"
+        disabled="[[isCancelDisabled]]"
+        on-oj-action="[[handleCancelTable]]">
+        <span slot="startIcon"
+            class="oj-ux-ico-call-missed-outgoing"></span>
+    </oj-button>
+    <!-- create file button -->
+    <oj-button class="oj-md-padding-4x-horizontal oj-md-2 app-color-gray"
+        chroming="solid"
+        label="[[fileButton]]"
+        on-oj-action="[[handleLoadFile]]">
+        <span slot="startIcon"
+            class="oj-ux-ico-file"></span>
+    </oj-button>
+</div>
+<div class="oj-flex oj-sm-margin-2x-top oj-sm-padding-2x-horizontal">
+
+    <oj-table id="dropContainer"
+        style="border: 0.5px solid gray; text-align: center; border-radius: 4px;"
+        selection-mode.row="single"
+        class="app-table-container"
+        dnd='{"reorder": {"columns": "enabled"}}'
+        data="[[tblDataProvider]]"
+        columns-default.sortable="disabled"
+        on-selected-changed="[[selectedChangedListener]]"
+        layout="fixed"
+        columns="[[columns]]">
+    </oj-table>
+
+</div>
+<div class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center 
+    oj-sm-flex-items-initial oj-sm-justify-content-flex-end">
+    <!-- ok button -->
+
+    <oj-c-button class="oj-button-sm"
+        style="min-width: 20vh;"
+        chroming="callToAction"
+        display="all"
+        label="[[applyLabel]]"
+        on-oj-action="[[handleScreenApply]]"> <span slot="startIcon"
+            class="oj-ux-ico-check"></span>
+    </oj-c-button>
+    <!-- cancel button -->
+    <oj-c-button class="oj-md-padding-4x-horizontal"
+        style="min-width: 20vh;"
+        chroming="danger"
+        label="[[closeLabel]]"
+        display="all"
+        on-oj-action="[[handleScreenClose]]">
+        <span slot="startIcon"
+            class="oj-ux-ico-multiply"></span>
+    </oj-c-button>
+</div>

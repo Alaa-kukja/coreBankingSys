@@ -1,0 +1,151 @@
+<div class="oj-hybrid-padding oj-divider-top">
+  <div id="mainContent"
+    class="oj-flex">
+    <div class="oj-lg-flex-items oj-panel">
+      <oj-table id="table"
+        aria-label="Managers Table"
+        accessibility.row-header="column3"
+        data="[[dataSource]]"
+        columns="[[columns]]"
+        selection-mode='{"row": "none", "column": "none"}'>
+        <template slot="rowTemplate"
+          data-oj-as="row">
+          <tr>
+            <td>
+              <oj-checkboxset aria-hidden="true"
+                on-value-changed="[[enableDelete]]"
+                class="oj-checkboxset-no-chrome"
+                data-oj-clickthrough="disabled">
+                <oj-option :id="[[row.data.id]]"
+                  value="[[row.data.id]]"></oj-option>
+              </oj-checkboxset>
+            </td>
+            <td>
+              <div id="ManagerId"
+                on-click="[[function(data, event){ showChangeNameDialog(row.data.id,data,event) }]]">
+                <oj-bind-text value="[[row.data.id]]"></oj-bind-text>
+              </div>
+            </td>
+            <td>
+              <div id="ManagerName"
+                on-click="[[function(data, event){ showChangeNameDialog(row.data.id,data,event) }]]">
+                <oj-bind-text value="[[row.data.label]]"></oj-bind-text>
+              </div>
+            </td>
+          </tr>
+        </template>
+      </oj-table>
+    </div>
+    <div class="oj-flex-item oj-panel oj-panel-border-radius-10 oj-bg-neutral-10"
+    style="max-width: 66dvh;">
+      <oj-dialog id="editDialog"
+        class="demo-crud-table-demo-hidden"
+        dialog-title="Change Manger Name"
+        drag-affordance="title-bar"
+        modality="modeless"
+        resize-behavior="none">
+        <div slot="header"
+          class="oj-helper-clearfix"
+          aria-labelledby="dialog-title-id">
+          <div>
+            <span id="dialog-title-id"
+              class="oj-dialog-title"> <oj-bind-text value="[[editNameLabel]]">
+              </oj-bind-text></span>
+          </div>
+        </div>
+        <div slot="body">
+
+
+
+          <div class="oj-md-odd-cols-4">
+            <oj-label for="newName"
+              class="oj-label">
+              <oj-bind-text value="[[newNameLabel]]">
+              </oj-bind-text>
+            </oj-label>
+            <oj-input-text id="newName"
+              value="{{currentManagerName}}"></oj-input-text>
+          </div>
+        </div>
+        <div slot="footer">
+
+
+          <div class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center 
+          oj-sm-flex-items-initial oj-sm-justify-content-flex-end">
+            <oj-button id="cancel"
+              class="oj-button-sm oj-sm-padding-2x-horizontal"
+              chroming="danger"
+              on-oj-action="[[cancelDialog]]"
+              data-oj-clickthrough="disabled">
+              <span><oj-bind-text value="[[cancelLabel]]"></oj-bind-text></span>
+            </oj-button>
+            <oj-button id="update"
+              class="oj-button-sm"
+              chroming="callToAction"
+              on-oj-action="[[updateManagerName]]"
+              data-oj-clickthrough="disabled">
+              <span><oj-bind-text value="[[applyLabel]]"></oj-bind-text></span>
+            </oj-button>
+          </div>
+
+
+        </div>
+      </oj-dialog>
+      <!-- A simple form is used to add a new manager record. -->
+      <h3> <oj-bind-text value="[[newManagerLabel]]">
+        </oj-bind-text></h3>
+      <oj-form-layout>
+        <oj-input-number id="newDepartId"
+          value="{{newManagerId}}"
+          :label-hint="[[mangerIdLabel]]"></oj-input-number>
+        <oj-label id="inputgroup"
+          label-id="inputgrouplabel"> <oj-bind-text value="[[nameLabel]]"></oj-bind-text></oj-label>
+        <div aria-labelledby="inputgrouplabel"
+          role="group">
+          <oj-input-text id="newDepartName"
+            value="{{newManagerName}}"
+            placeholder="[[newManagerLabel]]"
+            :label-hint="[[newManagerLabel]]"></oj-input-text>
+
+
+
+          <div class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center 
+            oj-sm-flex-items-initial oj-sm-justify-content-flex-end oj-sm-padding-4x-end">
+            <oj-button id="deleteRow"
+              class="oj-button-sm oj-sm-padding-2x-horizontal"
+              chroming="danger"
+              display="icons"
+              label="[[deleteRowLabel]]"
+              disabled="[[!somethingChecked()]]"
+              on-oj-action="[[deleteManager]]"> <span slot="startIcon"
+                class="oj-ux-ico-delete-all"></span>
+              <span></oj-button>
+            <oj-button id="addRowDisplay"
+              class="oj-button-sm"
+              chroming="callToAction"
+              display="icons"
+              label="[[addRowLabel]]"
+              on-oj-action="[[addManager]]"> <span slot="startIcon"
+                class="oj-ux-ico-playlist-add-check"></span>
+              <span></oj-button>
+
+
+          </div>
+
+        </div>
+      </oj-form-layout>
+    </div>
+  </div>
+</div>
+
+
+<!-- Messages -->
+
+<oj-messages class="oj-color-invert"
+  messages="[[messagesDataProvider]]"
+  position='[[messagePosition]]'
+  display="general"
+  display-options.category="none">
+</oj-messages>
+
+<!-- Messages End -->

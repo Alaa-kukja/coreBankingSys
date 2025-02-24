@@ -1,0 +1,249 @@
+<!--  1  -->
+<oj-form-layout class="oj-sm-padding-2x-top oj-md-margin-2x-horizontal oj-md-margin-0-bottom"
+    direction="row"
+    columns="4"
+    user-assistance-density="compact">
+
+
+    <oj-select-single id="Sector"
+        label-hint="[[SectorLabel]]"
+        data="[[sectorData]]"
+        value="{{sectorValue}}"
+        item-text="[[getItemSector]]"></oj-select-single>
+
+
+    <oj-select-single id="Sub_sector"
+        label-hint="[[Sub_sectorLabel]]"
+        data="[[sub_sectorData]]"
+        value="{{sub_sectorValue}}"
+        item-text="[[getItemSub_sector]]"></oj-select-single>
+
+
+    <oj-input-number id="year"
+        label-hint="[[yearLabel]]"
+        value="{{yearValue}}"></oj-input-number>
+
+
+    <oj-input-number id="month"
+        label-hint="[[monthLabel]]"
+        value="{{monthValue}}"></oj-input-number>
+
+</oj-form-layout>
+
+<!--  2  -->
+<!-- amount & amountInWriting -->
+<div class="oj-flex oj-md-margin-1x-vertical">
+
+    <div class="oj-lg-2 oj-flex-item oj-sm-padding-1x-horizontal">
+        <oj-input-number id="amount"
+            value="{{amountVal}}"
+            label-hint="[[amountLabel]]"></oj-input-number>
+    </div>
+
+    <div class="oj-lg-10 oj-flex-item oj-sm-padding-1x-horizontal">
+        <oj-input-text value="{{amountInWritingVal}}"
+            label-hint="[[amountInWritingLabel]]"
+            disabled></oj-input-text>
+    </div>
+
+</div>
+
+
+<!--  3  -->
+<!-- The Benefit & Rate & description & button for Benefits -->
+
+<div class="oj-flex oj-md-margin-2x-top">
+    <div class="oj-flex oj-lg-10 oj-flex-item">
+        <div class="oj-lg-2 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-number :id="[[idInterestCodeID]]"
+                label-hint="[[interestCodeLabel]]"
+                value="{{interestCodeValue}}"
+                disabled></oj-input-number>
+        </div>
+        <div class="oj-lg-2 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-text :id="[[interestRateID]]"
+                label-hint="[[interestRateLabel]]"
+                value="{{interestRateValue}}"
+                disabled></oj-input-text>
+        </div>
+        <div class="oj-lg-8 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-text :id="[[interestDescrID]]"
+                label-hint="[[interestDescrLabel]]"
+                value="{{interestDescrValue}}"
+                disabled></oj-input-text>
+        </div>
+    </div>
+
+    <div class="oj-lg-2 oj-flex-item oj-flex oj-lg-justify-content-flex-end">
+        <oj-dialog :id="[[chooseInterestID]]"
+            style="width: max-content;"
+            dialog-title="[[interestsAvailable]]"
+            aria-describedby="desc">
+            <div slot="body">
+                <oj-table id="table"
+                    data="[[interestsAvailableData]]"
+                    selected="{{selected_BA_Item}}"
+                    selection-mode='{"row": "single"}'
+                    on-selected-changed="[[selectedChangedListener]]"
+                    columns='[[interestsTableAvailableColumns]]'></oj-table>
+            </div>
+            <div slot="footer">
+                <div class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center 
+                      oj-sm-flex-items-initial oj-sm-justify-content-flex-end">
+                    <oj-c-button class="oj-button-sm oj-sm-padding-2x-horizontal"
+                        chroming="danger"
+                        display="icons"
+                        label="[[cancelButton]]"
+                        on-oj-action="[[handleCancel]]"> <span slot="startIcon"
+                            class="oj-ux-ico-multiply"></span>
+                    </oj-c-button>
+                    <oj-c-button chroming="callToAction"
+                        display="icons"
+                        label="[[acceptButton]]"
+                        on-oj-action="[[handleApply]]"> <span slot="startIcon"
+                            class="oj-ux-ico-check"></span>
+                    </oj-c-button>
+                </div>
+            </div>
+        </oj-dialog>
+
+        <oj-c-button style="width: 90%;"
+            chroming="callToAction"
+            display="all"
+            label="[[selectInterestLabel]]"
+            on-oj-action="[[handleSelectInterest]]"> <span slot="startIcon"
+                class="oj-ux-ico-add-link"></span>
+        </oj-c-button>
+    </div>
+</div>
+
+<!--  5  -->
+<term-deposit current-router="[[router._activeState.path]]"
+    term-interest-acc-num="{{termInterestAccNumVal}}"
+    term-interest-acc-name="{{termInterestAccNameVal}}"
+    term-benefit-amount="{{termBenefitAmountVal}}"
+    term-deposit-acc-num="{{termDepositAccNumVal}}"
+    term-deposit-acc-name="{{termDepositAccNameVal}}"
+    term-deposit-deserved-date="{{termDepositDeservedDateVal}}"
+    term-current-year-int="{{termCurrentYearIntVal}}"
+    term-next-year-int="{{termNextYearIntVal}}"
+    term-sum-of-int="{{termSumOfIntVal}}"
+    term-income-tax="{{termIncomeTaxVal}}"
+    term-local-admin="{{termLocalAdminVal}}"
+    term-reconstruct="{{termReconstructVal}}"
+    term-sum-of-discounts="{{termSumOfDiscountsVal}}"></term-deposit>
+
+
+<!-- For Account -->
+<div id="dropContainer"
+    class="oj-flex container">
+    <div class="oj-md-4 oj-flex-item oj-sm-padding-1x-horizontal">
+        <oj-input-number id="accNumber"
+            value="{{accID}}"
+            label-hint="[[accNumberLabel]]"
+            disabled></oj-input-number>
+    </div>
+    <div class="oj-md-8 oj-flex-item oj-sm-padding-1x-horizontal">
+        <oj-input-text id="acc-Name"
+            value="{{accName}}"
+            label-hint="[[accNameLabel]]"
+            disabled></oj-input-text>
+    </div>
+</div>
+
+<!-- The Vertical && Horizontal Navigation -->
+<!-- The Vertical Navigation -->
+<div class="oj-flex">
+    <div class="oj-flex-item oj-sm-width-1/4 oj-sm-padding-1x-horizontal oj-sm-padding-10x-bottom"
+        style="margin-top: 2vh;">
+        <acc-tree id='acc-tree'
+            on-selected-changed="[[accountChanged]]"></acc-tree>
+    </div>
+    <div class="oj-sm-flex-initial oj-flex-item oj-sm-width-3/4">
+        <div class="oj-sm-padding-10x-bottom">
+            <oj-tab-bar style="margin-top: 2vh;"
+                selection="{{vSelectedItem}}"
+                display="[[medium() ? 'all' : 'icons']]"
+                layout="[[medium() ? 'stretch' : 'condense']]"
+                edge="top"
+                data="[[accDataProvider]]"
+                id="tabbar"
+                class="oj-flex oj-sm-justify-content-center oj-md-justify-content-center oj-lg-justify-content-flex-end">
+                <template slot="itemTemplate"
+                    data-oj-as="item">
+                    <li class="li-button"
+                        style="min-width: 18vh;border-radius: 18px;">
+                        <a href="#">
+                            <span :class="[['oj-tabbar-item-icon ' + item.data.icons]]"></span>
+                            <oj-bind-text value="[[item.data.name]]"></oj-bind-text>
+                        </a>
+                    </li>
+                </template>
+            </oj-tab-bar>
+        </div>
+        <oj-dialog :id="[[itsAccountDialog]]"
+            class="open-account-dialog"
+            position.at.horizontal="end"
+            position.collision="flipfit"
+            dialog-title="[[openAccountTitle]]">
+            <oj-module config="[[accCardModuleConfig]]">
+            </oj-module>
+        </oj-dialog>
+
+        <oj-bind-if test="[[vSelectedItem() == null]]">
+            <div class="oj-flex oj-sm-justify-content-center">
+                <oj-table id="t2"
+                    style="margin-top: 8vh;max-width: 92.2%;"
+                    data="[[accLinksDataProvider]]"
+                    columns="[[linkColumns]]">
+                    <template slot="actionTemplate"
+                        data-oj-as="cell">
+                        <oj-button display="icons"
+                            chroming="danger"
+                            class="oj-button-sm"
+                            label="[[deleteLabel]]"
+                            on-oj-action="[[handleDeleteLink]]"
+                            data-oj-clickthrough="disabled">
+                            <span slot="startIcon"
+                                class="oj-ux-ico-multiply"></span>
+                        </oj-button>
+                    </template>
+                </oj-table>
+            </div>
+
+        </oj-bind-if>
+
+
+    </div>
+</div>
+
+
+<div class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center 
+    oj-sm-flex-items-initial oj-sm-justify-content-flex-end container">
+    <!-- ok button -->
+
+    <oj-c-button class="oj-button-sm"
+        style="min-width: 20vh;"
+        chroming="callToAction"
+        display="all"
+        label="[[acceptButton]]"
+        on-oj-action="[[handleScreenApply]]"> <span slot="startIcon"
+            class="oj-ux-ico-check"></span>
+    </oj-c-button>
+    <!-- cancel button -->
+    <oj-c-button class="oj-md-padding-4x-horizontal"
+        style="min-width: 20vh;"
+        chroming="danger"
+        label="[[cancelButton]]"
+        display="all"
+        on-oj-action="[[handleScreenClose]]">
+        <span slot="startIcon"
+            class="oj-ux-ico-multiply"></span>
+    </oj-c-button>
+</div>
+
+
+<oj-c-message-toast class="oj-color-invert"
+    data="[[messages]]"
+    on-oj-close="[[handleCloseMessage]]">
+</oj-c-message-toast>

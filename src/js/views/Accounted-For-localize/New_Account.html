@@ -1,0 +1,93 @@
+<div class="oj-flex oj-sm-justify-content-center oj-sm-align-items-center">
+    <!-- Deposit -->
+    <oj-select-single id="Deposit"
+        class="oj-flex-item"
+        label-hint="[[depositLabel]]"
+        label-edge="inside"
+        data="[[DepositDataProvider]]"
+        value="{{DepositVal}}"
+        item-text="[[getItemDeposit]]">
+        <template slot="collectionTemplate"
+            data-oj-as="collection">
+            <oj-table id="table1"
+                selection-mode='{"row": "single"}'
+                columns-default='{"resizable": "disabled",
+                                  "sortable": "disabled"}'
+                columns="[[tableDepositColumns]]"
+                class="oj-select-results"
+                data="[[collection.data]]"
+                selected.row="[[collection.selected]]"
+                current-row="{{collection.currentRow}}"
+                on-oj-row-action="[[collection.handleRowAction]]">
+                <template slot="cellTemplate"
+                    data-oj-as="cell">
+                    <oj-highlight-text text="[[String(cell.data)]]"
+                        match-text="[[collection.searchText]]"></oj-highlight-text>
+                </template>
+            </oj-table>
+        </template>
+    </oj-select-single>
+    <!-- Account Owner -->
+    <div class="oj-flex-item oj-flex oj-lg-flex-wrap-nowrap oj-lg-align-items-center oj-sm-margin-2x-top">
+        <oj-c-button class="oj-flex-item oj-button-md"
+            id="button"
+            chroming="callToAction"
+            label="[[accountOwnerButtonVal]]"
+            on-oj-action="[[accountOwnerButtonAction]]">
+        </oj-c-button>
+        <oj-c-input-text label-hint=" "
+            class="oj-flex-item oj-sm-margin-2x-start oj-sm-margin-2x-end"
+            disabled="true"></oj-c-input-text>
+        <!-- interest CheckBox -->
+        <div class="oj-flex-item oj-sm-flex-initial">
+            <oj-checkboxset id="checkboxSetId"
+                value="{{checkinterest}}">
+                <oj-option value="interest">
+                    <oj-bind-text value="[[interestLabel]]"></oj-bind-text>
+                </oj-option>
+            </oj-checkboxset>
+        </div>
+    </div>
+    <!-- when we clicked with interest -->
+    <oj-bind-if test="[[checkinterest() == 'interest']]">
+        <oj-select-single id="interest"
+            class="oj-flex-item oj-sm-margin-2x-top"
+            label-hint="[[interestLabel]]"
+            label-edge="inside"
+            data="[[interestDataProvider]]"
+            value="{{interestVal}}"
+            item-text="[[getIteminterest]]">
+            <template slot="collectionTemplate"
+                data-oj-as="collection">
+                <oj-table id="table1"
+                    selection-mode='{"row": "single"}'
+                    columns-default='{"resizable": "disabled",
+                              "sortable": "disabled"}'
+                    columns="[[tableinterestColumns]]"
+                    class="oj-select-results"
+                    data="[[collection.data]]"
+                    selected.row="[[collection.selected]]"
+                    current-row="{{collection.currentRow}}"
+                    on-oj-row-action="[[collection.handleRowAction]]">
+                    <template slot="cellTemplate"
+                        data-oj-as="cell">
+                        <oj-highlight-text text="[[String(cell.data)]]"
+                            match-text="[[collection.searchText]]"></oj-highlight-text>
+                    </template>
+                </oj-table>
+            </template>
+        </oj-select-single>
+    </oj-bind-if>
+</div>
+
+<!-- navigation For account Owner Clicked -->
+<oj-dialog :id="[[itsAccountDialog]]"
+    class="open-account-dialog"
+    position.at.horizontal="end"
+    position.collision="flipfit"
+    dialog-title="[[accountOwnerButtonVal]]">
+    <oj-module config="[[accModuleConfig]]">
+    </oj-module>
+</oj-dialog>
+
+

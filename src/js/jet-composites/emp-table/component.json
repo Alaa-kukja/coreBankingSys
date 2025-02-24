@@ -1,0 +1,24 @@
+{
+    "name": "emp-table",
+    "description": "Employees Table.",
+    "displayName": "Employees Table",
+    "version": "15.0.0",
+    "jetVersion": ">=14.1.0 <=15.0.0",
+    "properties": {
+        "empData": {
+            "description": "The employee data .",
+            "displayName": "Employees Data",
+            "type": "ArrayDataProvider"
+        },
+        "empArray": {
+            "description": "The employee data array .",
+            "displayName": "Employees Data",
+            "type": "Array<Object>"
+        },
+        "master": {
+            "description": "The master of the table.",
+            "displayName": "Master",
+            "type": "number"
+          }
+    }
+}

@@ -1,0 +1,39 @@
+<div class="oj-flex">
+    <div class="oj-flex-item oj-sm-width-1/4 oj-sm-padding-1x-horizontal">
+        <oj-c-input-number id="accNum"
+            value="[[accNum]]"
+            label-hint="[[accNumLabel]]">
+        </oj-c-input-number>
+    </div>
+    <div class="oj-flex-item oj-sm-width-3/4 oj-sm-padding-1x-horizontal">
+        <oj-c-input-text id="accName"
+            value="{{accName}}"
+            label-hint="[[accNameLabel]]">
+        </oj-c-input-text>
+    </div>
+</div>
+
+
+<div class="oj-flex oj-sm-justify-content-flex-end oj-sm-margin-2x-top">
+
+    <oj-c-button id="button1"
+        style="width: 8vw;"
+        class="oj-sm-padding-1x-horizontal"
+        chroming="callToAction"
+        display="all"
+        label="[[acceptButton]]"
+        on-oj-action="[[acceptAction]]">
+        <span slot="startIcon"
+            class="oj-ux-ico-shield-trusted"></span>
+    </oj-c-button>
+    <oj-c-button id="button2"
+        class="oj-sm-padding-1x-horizontal"
+        style="width: 8vw;"
+        chroming="danger"
+        display="all"
+        label="[[cancelButton]]"
+        on-oj-action="[[cancelAction]]">
+        <span slot="startIcon"
+            class="oj-ux-ico-back-parent"></span>
+    </oj-c-button>
+</div>

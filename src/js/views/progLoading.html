@@ -1,0 +1,40 @@
+<div class="oj-hybrid-padding">
+  <div id="tableWrapper">
+    <oj-table id="table"
+      id="table"
+      aria-label="employees Table"
+      accessibility.row-header="empNameID"
+      selection-mode.row="single"
+      class="app-table-form-container"
+      data="[[employeeDataProvider]]"
+      on-selected-changed="[[selectedChangedListener]]"
+      columns-default.sortable="disabled"
+      layout="fixed"
+      columns="[[columns]]">
+      <template slot="clientNoTemplate"
+        data-oj-as="cell">
+        <oj-bind-text value="[[numberConverter.format(cell.data)]]"></oj-bind-text>
+      </template>
+
+      <template slot="firstNameTemplate"
+        data-oj-as="cell">
+        <oj-bind-text value="[[cell.data]]"></oj-bind-text>
+      </template>
+
+      <template slot="lastNameTemplate"
+        data-oj-as="cell">
+        <oj-bind-text value="[[cell.data]]"></oj-bind-text>
+      </template>
+
+      <template slot="fatherTemplate"
+        data-oj-as="cell">
+        <oj-bind-text value="[[cell.data]]"></oj-bind-text>
+      </template>
+
+      <template slot="motherTemplate"
+        data-oj-as="cell">
+        <oj-bind-text value="[[cell.data]]"></oj-bind-text>
+      </template>
+    </oj-table>
+  </div>
+</div>

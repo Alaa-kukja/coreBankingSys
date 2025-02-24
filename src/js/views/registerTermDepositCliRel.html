@@ -1,0 +1,119 @@
+<term-deposit current-router="[[router._activeState.path]]"
+    term-prim-number="{{termPrimNumberVal}}"
+    term-sub-number="{{termSubNumberVal}}"
+    term-sector="{{termSectorVal}}"
+    term-year="{{termYearVal}}"
+    term-month="{{termMonthVal}}"
+    term-first-amount="{{termFirstAmountVal}}"
+    term-deposit-amount="{{termDepositAmountVal}}"
+    term-first-deposit-date="{{termFirstDepositDateVal}}"
+    term-deposit-date="{{termDepositDateVal}}"
+    term-deserve-date="{{termDeserveDateVal}}"
+    term-deserved-date="{{termDeservedDateVal}}"
+    term-cli-acc-num="{{termCliAccNumVal}}"
+    term-cli-acc-name="{{termCliAccNameVal}}"></term-deposit>
+
+<!--  The Table -->
+<oj-bind-if test="[[clicked()]]">
+    <div class="oj-flex oj-lg-justify-content-center oj-md-margin-2x-horizontal container">
+        <oj-table id="tableForClient"
+            aria-label="Clients Table"
+            accessibility.row-header="name"
+            class="oj-md-12 demoTable"
+            data="[[clientTableDataProvider]]"
+            columns="{{clientTableColumns}}"></oj-table>
+
+        <script type="text/html"
+            id="cli_name">
+            <td>
+                <oj-bind-text value="[[$context.row.firstName + ' ' + $context.row.fatherName + ' ' + $context.row.lastName]]"></oj-bind-text>
+            </td>
+            </script>
+    </div>
+</oj-bind-if>
+
+<!-- Type Of Relation && Specific Client -->
+<div class="oj-flex container">
+    <div class="oj-md-4 oj-flex-item">
+        <oj-select-single id="select1"
+            label-hint="[[typeOfRelationLabel]]"
+            label-edge="inside"
+            class="oj-form-control-max-width-md"
+            data="[[typeOfRelationData]]"
+            value="{{typeOfRelationVal}}"></oj-select-single>
+    </div>
+
+    <div class="oj-md-1 oj-flex-item"></div>
+
+    <div class="oj-flex-item oj-flex oj-md-align-items-center">
+        <div class="oj-md-1 oj-flex-item">
+            <oj-button id="DelCli"
+                chroming="solid"
+                class="oj-button-lg"
+                display="icons"
+                on-oj-action="[[DelCliNamButtonAction]]">
+                <span slot="startIcon"
+                    class="oj-ux-ico-delete-circle"></span>
+            </oj-button>
+        </div>
+
+        <div class="oj-md-3 oj-flex-item">
+            <oj-tab-bar selection="{{vSelectedItem}}"
+                edge="top"
+                data="[[accDataProvider]]"
+                id="tabbar">
+                <template slot="itemTemplate"
+                    data-oj-as="item">
+                    <li style="border-radius: 4px;"
+                        class="oj-md-padding-2x-vertical">
+                        <a href="#">
+                            <oj-bind-text value="[[item.data.name]]"></oj-bind-text>
+                        </a>
+                    </li>
+                </template>
+            </oj-tab-bar>
+        </div>
+
+        <div class="oj-md-6 oj-flex-item">
+            <oj-input-text id="cliName"
+                value="{{cliNameVal}}"
+                label-hint="[[cliNameLabel]]"></oj-input-text>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- The Dialog -->
+<oj-dialog :id="[[itsAccountDialog]]"
+    class="open-account-dialog"
+    position.at.horizontal="end"
+    position.collision="flipfit"
+    dialog-title="[[openAccountTitle]]">
+    <oj-module config="[[accCardModuleConfig]]">
+    </oj-module>
+</oj-dialog>
+
+<!--  The Buttons Under Screen -->
+<div class="container">
+    <div class="oj-flex oj-lg-justify-content-flex-end oj-sm-padding-2x-top oj-divider-top oj-divider-padding">
+        <div class="oj-md-2 oj-flex-item oj-flex oj-lg-justify-content-center">
+            <oj-button id="search"
+                chroming="solid"
+                class="oj-button-lg"
+                on-oj-action="[[resultButtonAction]]">
+                <oj-bind-text value="[[resultButtonLabel]]"></oj-bind-text>
+                <!-- <span class="oj-ux-ico-search"></span> -->
+            </oj-button>
+        </div>
+        <div class="oj-md-1 oj-flex-item oj-flex oj-lg-justify-content-center">
+            <oj-button id="search"
+                chroming="danger"
+                class="oj-button-lg"
+                on-oj-action="[[DelResultButtonAction]]">
+                <oj-bind-text value="[[DelResultButtonLabel]]"></oj-bind-text>
+                <!-- <span class="oj-ux-ico-search"></span> -->
+            </oj-button>
+        </div>
+    </div>
+</div>

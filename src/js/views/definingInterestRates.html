@@ -1,0 +1,128 @@
+<!-- first Table -->
+<div class="oj-flex oj-lg-justify-content-center oj-sm-padding-2x-top">
+    <oj-table id="tableForDepositNum"
+        aria-label="Deposits Number Table"
+        selected="{{selectedInterestItem}}"
+        selection-mode.row="single"
+        on-selected-changed="[[InterestChangedListener]]"
+        edit-mode="rowEdit"
+        edit-row="{{editRow}}"
+        class="oj-md-margin-2x-horizontal oj-md-12 demoTable"
+        data="[[interestsTabDataProvider]]"
+        columns="{{interestsTableColumns}}">
+
+        <template slot="rowTemplate"
+            data-oj-as="row">
+            <oj-bind-if test="[[row.mode === 'navigation']]">
+                <td>
+                    <oj-bind-text value="[[row.item.data.intNo]]"></oj-bind-text>
+                </td>
+                <td>
+                    <oj-bind-text value="[[row.item.data.intActive]]"></oj-bind-text>
+                </td>
+                <td>
+                    <oj-bind-text value="[[row.item.data.moreThan]]"></oj-bind-text>
+                </td>
+                <td>
+                    <oj-bind-text value="[[row.item.data.debitInt]]"></oj-bind-text>
+                </td>
+                <td>
+                    <oj-bind-text value="[[row.item.data.creditInt]]"></oj-bind-text>
+                </td>
+                <td>
+                    <oj-bind-text value="[[row.item.data.descr]]"></oj-bind-text>
+                </td>
+                <td class="oj-sm-padding-0-vertical">
+                    <oj-button display="icons"
+                        class="oj-button-sm"
+                        chroming="borderless"
+                        disabled="[[row.editable === 'off']]"
+                        on-oj-action="[[handleUpdate]]"
+                        data-oj-clickthrough="disabled">
+                        <span slot="startIcon"
+                            class="oj-ux-ico-edit"></span>
+                        Edit
+                    </oj-button>
+                </td>
+            </oj-bind-if>
+            <oj-bind-if test="[[row.mode === 'edit']]">
+                <td colspan="7"
+                    class="oj-form-control-default oj-sm-padding-2x oj-table-data-cell-padding">
+                    <oj-validation-group id="tracker">
+                        <oj-form-layout id="ofl1"
+                            max-columns="4"
+                            direction="row">
+                            <oj-input-number id="it1"
+                                label-hint="[[intNoLabel]]"
+                                value="{{row.item.data.intNo}}"
+                                step="0"></oj-input-number>
+
+                            <oj-input-text id="it1"
+                                label-hint="[[intActiveLabel]]"
+                                value="{{row.item.data.intActive}}"
+                                class="editable"></oj-input-text>
+
+                            <oj-input-text id="it2"
+                                label-hint="[[searchLabel]]"
+                                value="{{searchValue}}"
+                                class="editable"></oj-input-text>
+
+                            <oj-input-text id="it3"
+                                label-hint="[[descrLabel]]"
+                                value="{{row.item.data.descr}}"
+                                class="editable"></oj-input-text>
+
+                            <oj-input-text id="it4"
+                                label-hint="[[debtIntRateLabel]]"
+                                value="{{row.item.data.debtInt}}"
+                                class="editable"></oj-input-text>
+
+                            <oj-input-number id="it6"
+                                label-hint="[[debtIntDaysLabel]]"
+                                value="{{row.item.data.debtYearDaysNo}}"
+                                class="editable"></oj-input-number>
+
+                            <oj-input-number id="it7"
+                                label-hint="[[creditIntRateLabel]]"
+                                value="{{row.item.data.creditInt}}"
+                                class="editable"></oj-input-number>
+
+                            <oj-input-number id="it8"
+                                label-hint="[[creditIntDaysLabel]]"
+                                value="{{row.item.data.crdtYearDaysNo}}"
+                                class="editable"></oj-input-number>
+
+                            <oj-input-number id="it9"
+                                label-hint="[[debtAccNoLabel]]"
+                                value="{{row.item.data.debAccountNo}}"
+                                class="editable"></oj-input-number>
+
+                            <oj-input-number id="it10"
+                                label-hint="[[creditAccNoLabel]]"
+                                value="{{row.item.data.crdAccountNo}}"
+                                class="editable"></oj-input-number>
+
+
+                        </oj-form-layout>
+                    </oj-validation-group>
+
+                    <oj-button id="cancel"
+                        class="oj-button-sm"
+                        chroming="borderless"
+                        on-oj-action="[[handleCancel]]"
+                        data-oj-clickthrough="disabled">
+                        Cancel
+                    </oj-button>
+
+                    <oj-button id="update"
+                        class="oj-button-sm"
+                        chroming="outlined"
+                        on-oj-action="[[handleDone]]"
+                        data-oj-clickthrough="disabled">
+                        Apply
+                    </oj-button>
+                </td>
+            </oj-bind-if>
+        </template>
+
+    </oj-table>

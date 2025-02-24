@@ -1,0 +1,81 @@
+<!-- BOOK -->
+<div on-click="[[$properties.clickCallback]]"
+    class="oj-panel oj-panel-shadow-sm">
+    <div class="oj-flex oj-lg-align-items-center oj-lg-flex-items-initial oj-lg-justify-content-center">
+        <div class="oj-flex-item">
+            <oj-avatar class="oj-flex-item"
+                role="img"
+                size="2xl"
+                initials="B"
+                src="[[$properties.src]]"
+                aria-label="">
+            </oj-avatar>
+            <div class="oj-flex-item oj-typography-heading-xs oj-typography-semi-bold">
+                <oj-bind-text value="[[bookTitle]]"></oj-bind-text>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center oj-sm-flex-items-initial oj-sm-justify-content-flex-start oj-sm-padding-1x-horizontal">
+        <div class="oj-flex-item">
+            <div class="oj-flex-item oj-typography-subheading-xs oj-typography-semi-bold oj-text-color-secondary">
+                <oj-bind-text value="[[bookAuthor]]"></oj-bind-text>
+            </div>
+
+            <div class="oj-flex-item oj-typography-body-xs oj-typography-semi-bold oj-text-color-secondary">
+                <oj-bind-text value="[[bookType]]"></oj-bind-text>
+            </div>
+        </div>
+    </div>
+    <div
+        class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center oj-sm-flex-items-initial oj-sm-justify-content-flex-end">
+        <div class="oj-flex-item oj-sm-padding-2x-horizontal">
+            <oj-c-rating-gauge value="[[bookRating]]"
+                step="0.5"
+                color="gold"
+                readonly
+                size="sm">
+            </oj-c-rating-gauge>
+        </div>
+        <oj-button class="oj-button-sm oj-sm-padding-2x-horizontal"
+            on-oj-action="[[handleAddToList]]"
+            display="icons">
+            <span slot="startIcon"
+                class="oj-ux-ico-heart"></span>
+            <span>
+                <oj-bind-text value="[[addToListLabel]]">
+
+                </oj-bind-text>
+            </span>
+        </oj-button>
+
+        <oj-button class="oj-button-sm"
+            chroming="callToAction"
+            on-oj-action="[[handleAddToCart]]"
+            display="icons">
+            <span slot="startIcon"
+                class="oj-ux-ico-cart-add"></span>
+            <span>
+                <oj-bind-text value="[[addToCartLabel]]">
+
+                </oj-bind-text>
+            </span>
+        </oj-button>
+    </div>
+</div>
+<!-- Book END -->
+
+<oj-dialog :id="[[favoriteTestDialog]]"
+    dialog-title="[[bookTitle]]">
+    <div slot="body">
+        <p id="desc">
+            This is the dialog content. User can change dialog resize behavior, cancel behavior and drag
+            behavior by setting attributes. Default attribute value depends on the theme.
+        </p>
+    </div>
+    <div slot="footer">
+        <oj-button :id="[[closeTestDialog]]"
+            on-oj-action="[[closeFavoriteTestDialog]]">OK</oj-button>
+    </div>
+</oj-dialog>

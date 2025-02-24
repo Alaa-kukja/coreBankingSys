@@ -1,0 +1,293 @@
+<link rel="stylesheet" href="css/app2.css" type="text/css" />
+<div class="oj-hybrid-padding ">
+    <oj-form-layout id="internalOutTransForm" direction="row" user-assistance-density="compact"
+                    label-edge="start" class="oj-formlayout-full-width">
+        <div class="oj-flex" style="flex-direction: column;">
+            <div class="oj-flex-item oj-sm-padding-1x">
+                <div class="oj-flex-item oj-sm-padding-1x">
+                    <div class="oj-flex">
+                        <div class="oj-flex-item oj-flex-item2 oj-sm-padding-2x-horizontal">
+                            <oj-label-value label-edge="start">
+                                <oj-label slot="label" for="transType" class="text-center">
+                                    <span>
+                                        <oj-bind-text value="[[chooseTransTypeLabel]]">
+                                        </oj-bind-text>
+                                    </span>
+                                </oj-label>
+                                <oj-select-single id="transType" label-hint="اختر نوع الحوالة"
+                                                  label-edge="provided"
+                                                  class="oj-form-control-max-width-md oj-sm-padding-1x-horizontal"
+                                                  slot="value" data="[[transTypeDataProvider]]"
+                                                  value="{{selectVal}}"></oj-select-single>
+                            </oj-label-value>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="oj-flex-item oj-sm-padding-1x">
+                    <div class="oj-flex">
+                        <div class="oj-flex-item oj-flex-item2 oj-sm-padding-2x-horizontal">
+                            <oj-button class="text-center">
+                                <span><oj-bind-text
+                                                  value="[[transfererLabel]]"></oj-bind-text></span>
+                            </oj-button>
+                            <oj-input-text id="transferer" value="{{transferer}}"
+                                           class="oj-sm-padding-1x-horizontal"
+                                           label-hint="طالب التحويل"></oj-input-text>
+                        </div>
+                        <div class="oj-flex-item oj-flex-item2 oj-sm-padding-2x-horizontal">
+                            <oj-button class="text-center ">
+                                <span>
+                                    <oj-bind-text value="[[transfererAccLabel]]">
+                                    </oj-bind-text>
+                                </span>
+                            </oj-button>
+                            <oj-input-text id="transfererAcc" value="{{transfererAcc}}"
+                                           class="oj-sm-padding-1x-horizontal"
+                                           label-hint="حسابه"></oj-input-text>
+                        </div>
+                        <div class="oj-flex-item oj-flex-item2 oj-sm-padding-2x-horizontal">
+                            <oj-button class=" text-center ">
+                                <span>
+                                    <oj-bind-text value="[[transfererNameLabel]]">
+                                    </oj-bind-text>
+                                </span>
+                            </oj-button>
+                            <oj-input-text id="transfererName" value="{{transfererName}}"
+                                           class=" oj-sm-padding-1x-horizontal"
+                                           label-hint="اسمه"></oj-input-text>
+                        </div>
+                    </div>
+                </div>
+                <div class="oj-flex-item oj-sm-padding-1x">
+                    <div class="oj-flex">
+                        <div class="oj-flex-item oj-flex-item2 oj-sm-padding-2x-horizontal">
+                            <oj-button class="text-center">
+                                <span>
+                                    <oj-bind-text value="[[senderLabel]]">
+                                    </oj-bind-text>
+                                </span>
+                            </oj-button>
+                            <oj-input-text id="sender" value="{{sender}}"
+                                           class=" oj-sm-padding-1x-horizontal"
+                                           label-hint="المرسل"></oj-input-text>
+                        </div>
+                        <div class="oj-flex-item oj-flex-item2 oj-sm-padding-2x-horizontal">
+                            <oj-button class="text-center">
+                                <span>
+                                    <oj-bind-text value="[[senderAccLabel]]">
+                                    </oj-bind-text>
+                                </span>
+                            </oj-button>
+                            <oj-input-text id="senderAcc" value="{{senderAcc}}"
+                                           class=" oj-sm-padding-1x-horizontal"
+                                           label-hint="حسابه"></oj-input-text>
+                        </div>
+                        <div class="oj-flex-item oj-flex-item2 oj-sm-padding-2x-horizontal">
+                            <oj-button class="text-center  ">
+                                <span>
+                                    <oj-bind-text value="[[senderNameLabel]]">
+                                    </oj-bind-text>
+                                </span>
+                            </oj-button>
+                            <oj-input-text id="senderName" value="{{senderName}}"
+                                           class=" oj-sm-padding-1x-horizontal"
+                                           label-hint="اسمه"></oj-input-text>
+                        </div>
+                    </div>
+                </div>
+                <div class="oj-flex-item oj-sm-padding-1x">
+                    <div class="oj-flex">
+                        <div class="oj-flex-item oj-flex-item2 oj-sm-padding-2x-horizontal">
+                            <oj-button class="text-center  ">
+                                <span>
+                                    <oj-bind-text value="[[receiverLabel]]">
+                                    </oj-bind-text>
+                                </span>
+                            </oj-button>
+                            <oj-input-text id="receiver" value="{{receiver}}"
+                                           class=" oj-sm-padding-1x-horizontal"
+                                           label-hint="المستفيد"></oj-input-text>
+                        </div>
+                        <div class="oj-flex-item oj-flex-item2 oj-sm-padding-2x-horizontal">
+
+                            <oj-button class="text-center  ">
+                                <span>
+                                    <oj-bind-text value="[[receiverAccLabel]]">
+                                    </oj-bind-text>
+                                </span>
+                            </oj-button>
+                            <oj-input-text id="receiverAcc" value="{{receiverAcc}}"
+                                           class=" oj-sm-padding-1x-horizontal"
+                                           label-hint="حسابه"></oj-input-text>
+                        </div>
+                        <div class="oj-flex-item oj-flex-item2 oj-sm-padding-2x-horizontal">
+                            <oj-button class="text-center  ">
+                                <span>
+                                    <oj-bind-text value="[[transAmountLabel]]">
+                                    </oj-bind-text>
+                                </span>
+                            </oj-button>
+                            <oj-input-text id="transAmount" value="{{transAmount}}"
+                                           class=" oj-sm-padding-1x-horizontal"
+                                           label-hint="مبلغ الحوالة"></oj-input-text>
+                        </div>
+                    </div>
+                </div>
+                <div class="oj-flex-item oj-sm-padding-1x">
+                    <div class="oj-flex">
+                        <div class="oj-flex-item  oj-sm-padding-2x-horizontal">
+                            <oj-label-value label-edge="start" label-width="10%">
+                                <oj-text-area id="description1" slot="value"
+                                              value="{{description1}}" rows="2"
+                                              class="oj-sm-padding-1x-horizontal"></oj-text-area>
+                            </oj-label-value>
+                        </div>
+                    </div>
+                </div>
+                <div class="oj-flex-item oj-sm-padding-1x">
+                    <div class="oj-flex">
+                        <div class="oj-flex-item  oj-sm-padding-2x-horizontal">
+                            <oj-label-value label-edge="start" label-width="10%">
+                                <oj-label slot="label" for="description" class=" text-center ">
+                                    <span>
+                                        <oj-bind-text value="[[descriptionLabel]]">
+                                        </oj-bind-text>
+                                    </span>
+                                </oj-label>
+                                <oj-text-area id="description" slot="value" value="{{description}}"
+                                              rows="1"
+                                              class="oj-sm-padding-1x-horizontal"></oj-text-area>
+                            </oj-label-value>
+                        </div>
+                    </div>
+                </div>
+                <div class="oj-flex-item oj-sm-padding-1x">
+                    <div class="oj-flex">
+                        <div class="oj-flex-item  oj-sm-padding-2x-horizontal">
+                            <oj-label-value label-edge="start">
+                                <oj-label id="commPayerLabel" slot="label" for="commPayer"
+                                          class="text-center ">
+                                    <span>
+                                        <oj-bind-text value="[[commPayerLabel]]">
+                                        </oj-bind-text>
+                                    </span>
+                                </oj-label>
+                                <oj-radioset id="commPayer" slot="value" value="{{commPayer}}"
+                                             class="oj-choice-direction-row oj-sm-padding-6x-horizontal"
+                                             label-hint="Direction Row Enabled">
+                                    <oj-option value="transferer">
+                                        <span>
+                                            <oj-bind-text value="[[transfererLabel]]">
+                                            </oj-bind-text>
+                                        </span>
+                                    </oj-option>
+                                    <oj-option value="receiver">
+                                        <span>
+                                            <oj-bind-text value="[[receiverLabel]]">
+                                            </oj-bind-text>
+                                        </span>
+                                    </oj-option>
+                                    <oj-option value="noPayer">
+                                        <span>
+                                            <oj-bind-text value="[[noPayerLabel]]">
+                                            </oj-bind-text>
+                                        </span>
+                                    </oj-option>
+                                </oj-radioset>
+                            </oj-label-value>
+                        </div>
+                    </div>
+                </div>
+                <div class="oj-flex-item oj-sm-padding-1x">
+                    <div class="oj-flex">
+                        <div class="oj-flex-item oj-flex-item2  oj-sm-padding-2x-horizontal"
+                             style="justify-content: center;">
+                            <oj-label-value label-edge="start">
+                                <oj-label slot="label" for="commAmount" class="text-center">
+                                    <span>
+                                        <oj-bind-text value="[[commAmountLabel]]">
+                                        </oj-bind-text>
+                                    </span>
+                                </oj-label>
+                                <oj-input-text id="commAmount" slot="value"
+                                               class="oj-sm-padding-1x-horizontal"
+                                               value="{{commAmount}}"></oj-input-text>
+                            </oj-label-value>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="oj-flex-item oj-sm-padding-1x">
+                    <div class="oj-flex">
+                        <div class="oj-flex-item oj-flex-item2  oj-sm-padding-2x-horizontal "
+                             style="justify-content: end;">
+                            <div>
+                                <oj-c-button chroming="callToAction" style="min-width: 15.5vh;"
+                                             label="[[submitLabel]]" on-oj-action="[[handleApply]]">
+                                    <span slot="startIcon" class="oj-ux-ico-check"></span>
+                                </oj-c-button>
+                                <oj-c-button chroming="danger" style="min-width: 15.5vh;"
+                                             label="[[cancelLabel]]"
+                                             on-oj-action="[[handleCancel]]">
+                                    <span slot="startIcon" class="oj-ux-ico-multiply"></span>
+                                </oj-c-button>
+                                <oj-c-button chroming="danger" style="min-width: 15.5vh;"
+                                             label="[[undoLabel]]" on-oj-action="[[handleBack]]">
+                                    <span slot="startIcon" class="oj-ux-ico-multiply"></span>
+                                </oj-c-button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </oj-form-layout>
+    <div class="oj-flex" style="margin-top:  1vh;">
+        <div class="oj-sm-flex-initial oj-flex-item oj-sm-padding-2x-horizontal"
+             style="max-width: 7.8%;">
+            <oj-navigation-list selection="{{vSelectedItem}}" display="icons"
+                                style="margin-top: 6vh;" aria-label="Choose a navigation item"
+                                drill-mode="none"
+                                on-oj-selection-action="[[handleVSelectionAction]]"
+                                data="[[vDataProvider]]">
+                <template slot="itemTemplate" data-oj-as="item">
+                    <li class=" li-button">
+                        <a href="#">
+                            <span
+                                  :class="[['oj-navigationlist-item-icon ' + item.data.icons]]"></span>
+                            <oj-bind-text value="[[item.data.name]]"></oj-bind-text>
+                        </a>
+                    </li>
+                </template>
+            </oj-navigation-list>
+        </div>
+        <div class="oj-divider-top oj-flex-item oj-sm-padding-2x-horizontal"
+             style="margin-top: -4vh;max-width: 92.2%;">
+            <oj-dialog :id="[[itsAccountDialog]]" class="open-account-dialog"
+                       position.at.horizontal="end" position.collision="flipfit"
+                       dialog-title="[[openAccountTitle]]">
+                <oj-module config="[[accCardModuleConfig]]">
+                </oj-module>
+            </oj-dialog>
+        </div>
+
+        <oj-bind-if test="[[vSelectedItem() == null]]">
+            <div class="oj-flex-item oj-sm-padding-2x-horizontal"
+                 style="margin-top: 4vh;max-width: 92.2%;">
+                <oj-table id="t2" data="[[accLinksDataProvider]]" columns="[[linkColumns]]">
+
+                    <template slot="actionTemplate" data-oj-as="cell">
+                        <oj-button display="icons" chroming="danger" class="oj-button-sm"
+                                   label="[[deleteLabel]]" on-oj-action="[[handleDeleteLink]]"
+                                   data-oj-clickthrough="disabled">
+                            <span slot="startIcon" class="oj-ux-ico-multiply"></span>
+                        </oj-button>
+                    </template>
+
+
+                </oj-table>
+            </div>
+        </oj-bind-if>
+    </div>
+</div>

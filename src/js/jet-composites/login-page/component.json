@@ -1,0 +1,24 @@
+{
+    "name": "login-page",
+    "description": "A login page that can display user and password.",
+    "displayName": "Login page",
+    "version": "15.0.0",
+    "jetVersion": ">=14.1.0 <=15.0.0",
+    "properties": {},
+    "events": {
+        "login": {
+            "description": "Triggered when the login button callback to execute.",
+            "displayName": "OnLogin",
+            "detail": {
+                "userLogin": {
+                    "description": "The value of the card.",
+                    "type": "string"
+                },
+                "userPassword": {
+                    "description": "The Password.",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "name": "acc-tree",
+    "description": "A tree to display accounts.",
+    "displayName": "Accounts tree",
+    "version": "15.0.0",
+    "jetVersion": ">=14.1.0 <=15.0.0",
+    "properties": {},
+    "events": {
+        "selectedChanged": {
+            "description": "Triggered when the selected account changed.",
+            "displayName": "OnSelected",
+            "detail": {
+                "accountNo": {
+                    "description": "The id of the current Account.",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

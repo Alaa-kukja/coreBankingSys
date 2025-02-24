@@ -1,0 +1,425 @@
+<!-- Primary & Sub Numbers -->
+<oj-bind-if
+    test="[[$properties.currentRouter == 'pullDepositFor' || $properties.currentRouter == 'freezeTermDeposit'|| $properties.currentRouter == 'unFreezeTermDeposit'||$properties.currentRouter == 'registerTermDepositCliRel'||$properties.currentRouter == 'cancelTermDepositCliRel'||$properties.currentRouter == 'modifyTermDeposit']]">
+
+    <div class="oj-flex oj-sm-padding-2x-top oj-lg-justify-content-center oj-sm-padding-2x-bottom">
+
+        <div class="oj-sm-12 oj-md-4 oj-lg-4 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-number value="{{$properties.termPrimNumber}}"
+                label-hint="[[PrimNumberLabel]]"
+                label-edge="inside"
+                validators="[[[numberRangeValidator]]]"></oj-input-number>
+        </div>
+        <div class="oj-lg-2"></div>
+        <div class="oj-sm-12 oj-md-4 oj-lg-4 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-number value="{{$properties.termSubNumber}}"
+                label-hint="[[SubNumberLabel]]"
+                label-edge="inside"
+                validators="[[[numberRangeValidator]]]"></oj-input-number>
+        </div>
+    </div>
+</oj-bind-if>
+
+<!-- Sector & subSector & Year & month -->
+<oj-bind-if
+    test="[[$properties.currentRouter == 'pullDepositFor' || $properties.currentRouter == 'procOfTermDeposits' || $properties.currentRouter == 'freezeTermDeposit'|| $properties.currentRouter == 'unFreezeTermDeposit'|| $properties.currentRouter == 'procUnpaidTermDeposit']]">
+
+    <div class="oj-flex oj-divider-top oj-divider-padding oj-sm-padding-2x-top">
+        <div class="oj-sm-12 oj-md-3 oj-lg-3 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-text value="{{$properties.termSector}}"
+                label-hint="[[SectorLabel]]"
+                disabled></oj-input-text>
+        </div>
+
+        <div class="oj-sm-12 oj-md-3 oj-lg-3 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-number value="{{$properties.termYear}}"
+                label-hint="[[yearLabel]]"
+                disabled></oj-input-number>
+        </div>
+
+        <div class="oj-sm-12 oj-md-3 oj-lg-3 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-number value="{{$properties.termMonth}}"
+                label-hint="[[monthLabel]]"
+                disabled></oj-input-number>
+        </div>
+
+        <div class="oj-sm-12 oj-md-3 oj-lg-3 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-number value="{{$properties.termFirstAmount}}"
+                label-hint="[[firstAmountLabel]]"
+                disabled></oj-input-number>
+        </div>
+    </div>
+
+</oj-bind-if>
+
+<!-- registerTermDepositCliRel -->
+<oj-bind-if
+    test="[[$properties.currentRouter == 'registerTermDepositCliRel'||$properties.currentRouter == 'cancelTermDepositCliRel'||$properties.currentRouter == 'modifyTermDeposit']]">
+    <div class="oj-flex oj-divider-top oj-divider-padding oj-sm-padding-2x-top">
+        <div class="oj-md-2.4 oj-lg-2.4 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-text value="{{$properties.termSector}}"
+                label-hint="[[SectorLabel]]"
+                disabled></oj-input-text>
+        </div>
+
+        <div class="oj-md-2.4 oj-lg-2.4 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-number value="{{$properties.termYear}}"
+                label-hint="[[yearLabel]]"
+                disabled></oj-input-number>
+        </div>
+
+        <div class="oj-md-2.4 oj-lg-2.4 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-number value="{{$properties.termMonth}}"
+                label-hint="[[monthLabel]]"
+                disabled></oj-input-number>
+        </div>
+
+        <div class="oj-md-2.4 oj-lg-2.4 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-number value="{{$properties.termFirstAmount}}"
+                label-hint="[[firstAmountLabel]]"
+                disabled></oj-input-number>
+        </div>
+
+        <div class="oj-md-2.4 oj-lg-2.4 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-number value="{{$properties.termDepositAmount}}"
+                label-hint="[[depositAmountLabel]]"
+                disabled></oj-input-number>
+        </div>
+    </div>
+</oj-bind-if>
+
+<!-- amount & amountInWriting -->
+<oj-bind-if test="[[$properties.currentRouter != 'registerTermDepositCliRel']]">
+    <oj-bind-if test="[[$properties.currentRouter != 'cancelTermDepositCliRel']]">
+        <oj-bind-if test="[[$properties.currentRouter != 'modifyTermDeposit']]">
+            <div class="oj-flex oj-sm-padding-2x-top">
+                <oj-bind-if
+                    test="[[$properties.currentRouter == 'pullDepositFor' || $properties.currentRouter == 'procOfTermDeposits' || $properties.currentRouter == 'freezeTermDeposit'|| $properties.currentRouter == 'unFreezeTermDeposit'|| $properties.currentRouter == 'procUnpaidTermDeposit']]">
+                    <div class="oj-lg-2 oj-flex-item oj-sm-padding-1x-horizontal">
+                        <oj-input-number value="{{$properties.termDepositAmount}}"
+                            label-hint="[[depositAmountLabel]]"
+                            disabled></oj-input-number>
+                    </div>
+
+
+                    <div class="oj-lg-10 oj-flex-item oj-sm-padding-1x-horizontal">
+                        <oj-input-text value="{{$properties.termWriteAmount}}"
+                            label-hint="[[amountInWritingLabel]]"
+                            disabled></oj-input-text>
+                    </div>
+                </oj-bind-if>
+            </div>
+        </oj-bind-if>
+    </oj-bind-if>
+</oj-bind-if>
+
+<!-- For Previous Benefit -->
+<oj-bind-if
+    test="[[$properties.currentRouter == 'TermDepositWithPreBenefit'||$properties.currentRouter == 'modifyTermDeposit']]">
+    <div class="oj-flex oj-md-margin-1x-top">
+        <div class="oj-md-2 oj-flex-item oj-md-padding-1x-vertical oj-md-padding-2x-horizontal">
+            <div class="oj-flex-item oj-md-padding-5x-vertical oj-panel oj-panel-shadow-md">
+                <oj-label class="oj-focus-highlight demoLabel">
+                    <oj-bind-text value="[[labelPreInterestVal]]"></oj-bind-text>
+                </oj-label>
+            </div>
+        </div>
+        <div class="oj-md-10 oj-flex-item">
+            <div class="oj-flex oj-sm-padding-1x-vertical">
+                <div class="oj-md-4 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termCurrentYearInt}}"
+                        label-hint="[[currentYearInterestLabel]]"
+                        disabled></oj-input-number>
+                </div>
+                <div class="oj-md-4 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termNextYearInt}}"
+                        label-hint="[[nextYearInterestLabel]]"
+                        disabled></oj-input-number>
+                </div>
+                <div class="oj-md-4 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termSumOfInt}}"
+                        label-hint="[[sumOfInterestsLabel]]"
+                        disabled></oj-input-number>
+                </div>
+            </div>
+            <div class="oj-flex">
+                <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termIncomeTax}}"
+                        label-hint="[[incomeTaxLabel]]"
+                        disabled></oj-input-number>
+                </div>
+                <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termLocalAdmin}}"
+                        label-hint="[[localAdminLabel]]"
+                        disabled></oj-input-number>
+                </div>
+                <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termReconstruct}}"
+                        label-hint="[[reconstructLabel]]"
+                        disabled></oj-input-number>
+                </div>
+                <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termSumOfDiscounts}}"
+                        label-hint="[[sumOfDiscountsLabel]]"
+                        disabled></oj-input-number>
+                </div>
+            </div>
+        </div>
+    </div>
+</oj-bind-if>
+
+<!-- The Benefit & Rate & description & button for Benefits -->
+<oj-bind-if test="[[$properties.currentRouter != 'registerTermDepositCliRel']]">
+    <oj-bind-if test="[[$properties.currentRouter != 'cancelTermDepositCliRel']]">
+        <oj-bind-if
+            test="[[$properties.currentRouter == 'pullDepositFor' || $properties.currentRouter == 'procOfTermDeposits' || $properties.currentRouter == 'freezeTermDeposit'|| $properties.currentRouter == 'unFreezeTermDeposit'||$properties.currentRouter == 'modifyTermDeposit'|| $properties.currentRouter == 'procUnpaidTermDeposit']]">
+            <div class="oj-flex oj-sm-padding-2x-top">
+
+                <div class="oj-flex oj-lg-10 oj-flex-item">
+                    <div class="oj-lg-2 oj-flex-item oj-sm-padding-1x-horizontal">
+                        <oj-input-number label-hint="[[interestCodeLabel]]"
+                            value="{{$properties.termBenefitSymbol}}"
+                            disabled></oj-input-number>
+                    </div>
+                    <div class="oj-lg-2 oj-flex-item oj-sm-padding-1x-horizontal">
+                        <oj-input-text label-hint="[[interestRateLabel]]"
+                            value="{{$properties.termBenefitRate}}"
+                            disabled></oj-input-text>
+                    </div>
+                    <div class="oj-lg-8 oj-flex-item oj-sm-padding-1x-horizontal">
+                        <oj-input-text label-hint="[[interestDescrLabel]]"
+                            value="{{$properties.termBenefitDescr}}"
+                            disabled></oj-input-text>
+                    </div>
+                </div>
+
+                <div class="oj-lg-2 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termBenefitAmount}}"
+                        label-hint="[[deservedInterestLabel]]"
+                        disabled></oj-input-number>
+                </div>
+
+            </div>
+
+        </oj-bind-if>
+    </oj-bind-if>
+</oj-bind-if>
+
+
+<!-- The NEW Benefit & Rate & description -->
+<oj-bind-if test="[[$properties.currentRouter == 'procOfTermDeposits']]">
+    <div class="oj-flex oj-sm-padding-2x-top">
+        <div class="oj-flex oj-lg-10 oj-flex-item">
+            <div class="oj-lg-2 oj-flex-item oj-sm-padding-1x-horizontal">
+                <oj-input-number label-hint="[[interestCodeLabel_2]]"
+                    value="{{$properties.termBenefit2Symbol}}"
+                    disabled></oj-input-number>
+            </div>
+            <div class="oj-lg-2 oj-flex-item oj-sm-padding-1x-horizontal">
+                <oj-input-text label-hint="[[interestRateLabel]]"
+                    value="{{$properties.termBenefit2Rate}}"
+                    disabled></oj-input-text>
+            </div>
+            <div class="oj-lg-8 oj-flex-item oj-sm-padding-1x-horizontal">
+                <oj-input-text label-hint="[[interestDescrLabel]]"
+                    value="{{$properties.termBenefit2Descr}}"
+                    disabled></oj-input-text>
+            </div>
+
+        </div>
+        <div class="oj-lg-2 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-number value="{{$properties.termSppIntAmount}}"
+                label-hint="[[provisionsAmountLabel]]"
+                disabled></oj-input-number>
+        </div>
+    </div>
+</oj-bind-if>
+
+<!-- For Benefits -->
+<oj-bind-if test="[[$properties.currentRouter != 'registerTermDepositCliRel']]">
+    <oj-bind-if test="[[$properties.currentRouter != 'cancelTermDepositCliRel']]">
+
+        <div class="oj-flex oj-sm-padding-2x-top">
+            <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+                <oj-input-number value="{{$properties.termInterestAccNum}}"
+                    label-hint="[[accNoInterestLabel]]"
+                    disabled></oj-input-number>
+            </div>
+            <oj-bind-if
+                test="[[$properties.currentRouter == 'TermDeposit' || $properties.currentRouter == 'pullDepositFor' || $properties.currentRouter == 'TermDepositWithPreBenefit']]">
+                <div class="oj-md-6 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-text value="{{$properties.termInterestAccName}}"
+                        label-hint="[[accNameInterestLabel]]"
+                        disabled></oj-input-text>
+                </div>
+            </oj-bind-if>
+
+            <oj-bind-if
+                test="[[$properties.currentRouter == 'procOfTermDeposits'|| $properties.currentRouter == 'freezeTermDeposit'|| $properties.currentRouter == 'unFreezeTermDeposit'||$properties.currentRouter == 'modifyTermDeposit'|| $properties.currentRouter == 'procUnpaidTermDeposit']]">
+                <div class="oj-md-9 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-text value="{{$properties.termInterestAccName}}"
+                        label-hint="[[accNameInterestLabel]]"
+                        disabled></oj-input-text>
+                </div>
+            </oj-bind-if>
+            <oj-bind-if
+                test="[[$properties.currentRouter == 'TermDeposit' || $properties.currentRouter == 'TermDepositWithPreBenefit']]">
+                <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-text value="{{$properties.termBenefitAmount}}"
+                        label-hint="[[interestWhenDeserveItLabel]]"
+                        disabled></oj-input-text>
+                </div>
+            </oj-bind-if>
+
+            <oj-bind-if test="[[$properties.currentRouter == 'pullDepositFor']]">
+                <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termSppIntAmount}}"
+                        label-hint="[[provisionsAmountLabel]]"
+                        disabled></oj-input-number>
+                </div>
+            </oj-bind-if>
+        </div>
+    </oj-bind-if>
+</oj-bind-if>
+
+
+<!-- For Deposit Date -->
+<oj-bind-if
+    test="[[$properties.currentRouter == 'pullDepositFor' ||  $properties.currentRouter == 'procOfTermDeposits'|| $properties.currentRouter == 'freezeTermDeposit'|| $properties.currentRouter == 'unFreezeTermDeposit'||$properties.currentRouter == 'registerTermDepositCliRel'|| $properties.currentRouter == 'cancelTermDepositCliRel'||$properties.currentRouter == 'modifyTermDeposit'|| $properties.currentRouter == 'procUnpaidTermDeposit']]">
+    <div class="oj-flex oj-sm-padding-2x-top">
+        <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-date value="{{$properties.termFirstDepositDate}}"
+                label-hint="[[firstDepositDateLabel]]"
+                disabled></oj-input-date>
+        </div>
+        <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-date value="{{$properties.termDepositDate}}"
+                label-hint="[[depositDateLabel]]"
+                disabled></oj-input-date>
+        </div>
+        <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-date value="{{$properties.termDeserveDate}}"
+                label-hint="[[deserveDateLabel]]"
+                disabled></oj-input-date>
+        </div>
+        <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-date value="{{$properties.termDeservedDate}}"
+                label-hint="[[deservedDateLabel]]"
+                disabled></oj-input-date>
+        </div>
+    </div>
+</oj-bind-if>
+
+
+<!-- For Deposits -->
+<oj-bind-if
+    test="[[$properties.currentRouter == 'TermDeposit' || $properties.currentRouter == 'TermDepositWithPreBenefit']]">
+    <div class="oj-flex oj-sm-padding-2x-vertical">
+        <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-number value="{{$properties.termDepositAccNum}}"
+                label-hint="[[NumOfDepositLabel]]"
+                disabled></oj-input-number>
+        </div>
+        <div class="oj-md-6 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-text value="{{$properties.termDepositAccName}}"
+                label-hint="[[NameDepositAccLabel]]"
+                disabled></oj-input-text>
+        </div>
+        <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-text value="{{$properties.termDepositDeservedDate}}"
+                label-hint="[[DateOfDeserveItLabel]]"
+                disabled></oj-input-text>
+        </div>
+    </div>
+</oj-bind-if>
+
+<oj-bind-if
+    test="[[$properties.currentRouter == 'pullDepositFor' || $properties.currentRouter == 'procOfTermDeposits'|| $properties.currentRouter == 'freezeTermDeposit'|| $properties.currentRouter == 'unFreezeTermDeposit'||$properties.currentRouter == 'modifyTermDeposit'|| $properties.currentRouter == 'procUnpaidTermDeposit']]">
+    <div class="oj-flex oj-sm-padding-2x-top">
+        <div class="oj-md-4 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-number value="{{$properties.termDepositAccNum}}"
+                label-hint="[[NumOfDepositLabel]]"
+                disabled></oj-input-number>
+        </div>
+        <div class="oj-md-8 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-text value="{{$properties.termDepositAccName}}"
+                label-hint="[[NameDepositAccLabel]]"
+                disabled></oj-input-text>
+        </div>
+    </div>
+</oj-bind-if>
+
+<!-- For Account -->
+<oj-bind-if
+    test="[[$properties.currentRouter == 'pullDepositFor' || $properties.currentRouter == 'procOfTermDeposits'|| $properties.currentRouter == 'freezeTermDeposit'|| $properties.currentRouter == 'unFreezeTermDeposit'|| $properties.currentRouter == 'registerTermDepositCliRel'||$properties.currentRouter == 'cancelTermDepositCliRel'||$properties.currentRouter == 'modifyTermDeposit'|| $properties.currentRouter == 'procUnpaidTermDeposit']]">
+
+    <div class="oj-flex oj-sm-padding-2x-top">
+        <div class="oj-md-4 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-number value="{{$properties.termCliAccNum}}"
+                label-hint="[[accNumberLabel]]"
+                disabled></oj-input-number>
+        </div>
+        <div class="oj-md-8 oj-flex-item oj-sm-padding-1x-horizontal">
+            <oj-input-text value="{{$properties.termCliAccName}}"
+                label-hint="[[accNameLabel]]"
+                disabled></oj-input-text>
+        </div>
+    </div>
+</oj-bind-if>
+
+<!-- For Previous Benefit -->
+<oj-bind-if
+    test="[[$properties.currentRouter == 'pullDepositFor' || $properties.currentRouter == 'procOfTermDeposits']]">
+
+    <div class="oj-flex oj-sm-padding-2x-vertical">
+        <div class="oj-md-2 oj-flex-item oj-md-padding-1x-vertical oj-md-padding-2x-horizontal">
+            <div class="oj-flex-item oj-md-padding-5x-vertical oj-panel oj-panel-shadow-md">
+                <oj-label class="oj-focus-highlight demoLabel">
+                    <oj-bind-text value="[[labelPreInterestVal]]"></oj-bind-text>
+                </oj-label>
+            </div>
+        </div>
+        <div class="oj-md-10 oj-flex-item">
+            <div class="oj-flex oj-sm-padding-1x-vertical">
+                <div class="oj-md-4 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termCurrentYearInt}}"
+                        label-hint="[[currentYearInterestLabel]]"
+                        disabled></oj-input-number>
+                </div>
+                <div class="oj-md-4 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termNextYearInt}}"
+                        label-hint="[[nextYearInterestLabel]]"
+                        disabled></oj-input-number>
+                </div>
+                <div class="oj-md-4 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termSumOfInt}}"
+                        label-hint="[[sumOfInterestsLabel]]"
+                        disabled></oj-input-number>
+                </div>
+            </div>
+            <div class="oj-flex">
+                <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termIncomeTax}}"
+                        label-hint="[[incomeTaxLabel]]"
+                        disabled></oj-input-number>
+                </div>
+                <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termLocalAdmin}}"
+                        label-hint="[[localAdminLabel]]"
+                        disabled></oj-input-number>
+                </div>
+                <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termReconstruct}}"
+                        label-hint="[[reconstructLabel]]"
+                        disabled></oj-input-number>
+                </div>
+                <div class="oj-md-3 oj-flex-item oj-sm-padding-1x-horizontal">
+                    <oj-input-number value="{{$properties.termSumOfDiscounts}}"
+                        label-hint="[[sumOfDiscountsLabel]]"
+                        disabled></oj-input-number>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</oj-bind-if>

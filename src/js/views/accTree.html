@@ -1,0 +1,134 @@
+<div class="oj-hybrid-padding">
+    <oj-tree-view :id="[[treeViewAccounts]]"
+        style="resize: horizontal;"
+        data="[[accountsDataProvider]]"
+        selected="{{selected}}"
+        expanded="{{expanded}}"
+        on-oj-before-expand="[[handleNodeExpand]]"
+        on-oj-expand="[[handleNodeExpanded]]"
+        on-selected-changed="[[handleSelectedChanged]]"
+        selection-mode="single"
+        aria-label="Tree View with JSON Data">
+        <template slot="itemTemplate"
+            data-oj-as="row">
+            <span :id="[['accNode'+row.data.accountNo]]"
+                class="oj-treeview-item-icon"></span>
+            <span class="oj-treeview-item-text">
+                <oj-bind-text
+                    value="[[treeLookItem() == 'idLook'? row.data.accountNo:row.data.accountNo+' : '+row.data.name]]"></oj-bind-text>
+            </span>
+        </template>
+    </oj-tree-view>
+    <div class="oj-flex">
+        <div class="oj-flex-item oj-sm-width-2/5 oj-sm-padding-1x-horizontal">
+            <oj-c-button style="min-width: 12.5vh;"
+                display="all"
+                label="[[searchLabel]]"
+                on-oj-action="[[handleTreeSearch]]"> <span slot="startIcon"
+                    class="oj-ux-ico-search"></span>
+            </oj-c-button>
+
+        </div>
+        <div class="oj-sm-flex-initial oj-flex-item oj-sm-padding-2x-end oj-sm-width-3/5">
+            <oj-tab-bar selection="{{treeLookItem}}"
+                display="all"
+                layout="condense"
+                edge="top"
+                data="[[treeLookDataProvider]]"
+                id="tabbar"
+                class="oj-flex oj-sm-justify-content-center oj-md-justify-content-center oj-lg-justify-content-flex-end">
+                <template slot="itemTemplate"
+                    data-oj-as="item">
+                    <li>
+                        <a href="#">
+                            <span :class="[['oj-tabbar-item-icon ' + item.data.icons]]"></span>
+                            <oj-bind-text value="[[item.data.name]]"></oj-bind-text>
+                        </a>
+                    </li>
+                </template>
+            </oj-tab-bar>
+        </div>
+
+    </div>
+</div>
+
+<oj-dialog :id="[[itsSearchDialog]]"
+    dialog-title="[[searchLabel]]">
+    <div slot="body">
+        <div class="oj-flex oj-sm-align-items-center oj-sm-padding-10x-horizontal"
+            style="border: 1px solid gray; border-radius: 8px;">
+            <oj-radioset label-hint="[[srOptionsLabel]]"
+                class="oj-choice-direction-row"
+                label-edge="inside"
+                options="[[srOptionsDP]]"
+                value="{{srSelectedValue}}"></oj-radioset>
+        </div>
+        <div class="oj-flex oj-sm-align-items-center oj-sm-padding-1x-top">
+            <div class="oj-flex-item oj-sm-width-4/5">
+                <oj-bind-if test="[[srSelectedValue()!='NM']]">
+                    <oj-input-number value="{{srKey}}"
+                        label-hint="[[srKeyLabel]]"></oj-input-number>
+                </oj-bind-if>
+                <oj-bind-if test="[[srSelectedValue()=='NM']]">
+                    <oj-input-text value="{{srTextKey}}"
+                        label-hint="[[srKeyLabel]]"></oj-input-text>
+                </oj-bind-if>
+            </div>
+            <div class="oj-sm-flex-initial oj-flex-item  oj-sm-padding-2x-start">
+                <oj-c-button class="oj-button-sm"
+                    chroming="callToAction"
+                    display="icons"
+                    label="Fill"
+                    on-oj-action="[[handleFill]]"> <span slot="startIcon"
+                        class="oj-ux-ico-dynamic-table"></span>
+                </oj-c-button>
+            </div>
+        </div>
+        <div class="oj-flex oj-sm-align-items-center oj-sm-padding-1x-top">
+            <oj-table :id="[[itsSearchTable]]"
+            aria-label="Accounts Table"
+            accessibility.row-header="column2"
+            on-selected-changed="[[tblSelectedChangedListener]]"
+            data="[[dataSource]]"
+            columns="[[columns]]"
+            selection-mode.row="single">
+            <template slot="rowTemplate"
+              data-oj-as="row">
+              <tr>
+                <td>
+                  <div id="accId">>
+                    <oj-bind-text value="[[row.data.accountNo]]"></oj-bind-text>
+                  </div>
+                </td>
+                <td>
+                  <div id="accName">
+                    <oj-bind-text value="[[row.data.name]]"></oj-bind-text>
+                  </div>
+                </td>
+              </tr>
+            </template>
+          </oj-table>
+        </div>
+
+    </div>
+    <div slot="footer">
+        <div class="oj-divider-top oj-divider-padding oj-flex oj-sm-align-items-center 
+   oj-sm-flex-items-initial oj-sm-justify-content-flex-end">
+            <oj-c-button class="oj-button-sm oj-sm-padding-2x-horizontal"
+                chroming="danger"
+                display="icons"
+                label="[[cancelLabel]]"
+                on-oj-action="[[handleCancelSearch]]"> <span slot="startIcon"
+                    class="oj-ux-ico-multiply"></span>
+            </oj-c-button>
+            <oj-c-button class="oj-button-sm"
+                chroming="callToAction"
+                display="icons"
+                label="[[applyLabel]]"
+                disabled="[[isDisabled]]"
+                on-oj-action="[[handleApplySearch]]"> <span slot="startIcon"
+                    class="oj-ux-ico-check"></span>
+            </oj-c-button>
+        </div>
+    </div>
+</oj-dialog>
